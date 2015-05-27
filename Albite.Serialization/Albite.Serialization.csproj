@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{20290E22-DD14-4B3D-BAC9-DCF33705A1C9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Albite.Serialization</RootNamespace>
+    <AssemblyName>Albite.Serialization</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile32</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Serialization|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug Serialization\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;DEBUG_SERIALIZATION</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <TargetPlatform Include="WindowsPhoneApp, Version=8.1" />
+    <TargetPlatform Include="Windows, Version=8.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Source\Internal\Helpers\TypeInfoExtensions.cs" />
+    <Compile Include="Source\Internal\Readers\ObjectCache.cs" />
+    <Compile Include="Source\Internal\Readers\Descriptors.cs" />
+    <Compile Include="Source\Internal\Readers\IDescriptor.cs" />
+    <Compile Include="Source\Internal\Readers\IInitiailzableSerializer.cs" />
+    <Compile Include="Source\Internal\Readers\SerializerCache.cs" />
+    <Compile Include="Source\Internal\SerializedType.cs" />
+    <Compile Include="Source\Internal\Version.cs" />
+    <Compile Include="Source\Internal\Writers\Collections\DictionarySerializer.cs" />
+    <Compile Include="Source\Internal\Writers\Descriptors.cs" />
+    <Compile Include="Source\Internal\Writers\IInitiailzableSerializer.cs" />
+    <Compile Include="Source\Internal\Writers\Primitives\EnumSerializer.cs" />
+    <Compile Include="Source\Internal\Writers\ObjectCache.cs" />
+    <Compile Include="Source\Internal\Writers\IDescriptor.cs" />
+    <Compile Include="Source\Internal\Writers\Primitives\PrimitiveSerializer.cs" />
+    <Compile Include="Source\Internal\Writers\SerializerCache.cs" />
+    <Compile Include="Source\Internal\Writers\Primitives\TypeSerializer.cs" />
+    <Compile Include="Source\ObjectReader.cs" />
+    <Compile Include="Source\ObjectWriter.cs" />
+    <Compile Include="Source\Internal\Readers\Collections\ArraySerializer.cs" />
+    <Compile Include="Source\Internal\Readers\Collections\CollectionSerializer.cs" />
+    <Compile Include="Source\Internal\Readers\Collections\DictionarySerializer.cs" />
+    <Compile Include="Source\Internal\Readers\Primitives\TypeSerializer.cs" />
+    <Compile Include="Source\Internal\Writers\Collections\CollectionSerializer.cs" />
+    <Compile Include="Source\Internal\Writers\Collections\ArraySerializer.cs" />
+    <Compile Include="Source\Internal\Readers\ClassSerializer.cs" />
+    <Compile Include="Source\Internal\Readers\ObjectSerializer.cs" />
+    <Compile Include="Source\Internal\Readers\Primitives\PrimitiveSerializer.cs" />
+    <Compile Include="Source\Internal\Readers\ISerializer.cs" />
+    <Compile Include="Source\Internal\Readers\Primitives\EnumSerializer.cs" />
+    <Compile Include="Source\Internal\Writers\IContext.cs" />
+    <Compile Include="Source\Internal\Writers\ObjectSerializer.cs" />
+    <Compile Include="Source\Internal\Writers\ClassSerializer.cs" />
+    <Compile Include="Source\Internal\Readers\ProxySerializer.cs" />
+    <Compile Include="Source\Internal\Writers\ProxySerializer.cs" />
+    <Compile Include="Source\Internal\Readers\Context.cs" />
+    <Compile Include="Source\Internal\Writers\ISerializer.cs" />
+    <Compile Include="Source\Internal\Writers\Context.cs" />
+    <Compile Include="Source\SerializedAttribute.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Source\Internal\Readers\IContext.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Albite.Core\Albite.Core\Albite.Core.csproj">
+      <Project>{9809143a-01ae-4d29-810e-eb39843df112}</Project>
+      <Name>Albite.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
