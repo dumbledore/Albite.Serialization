@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using System;
 using Albite.Core;
+using System.Collections.Generic;
 
 namespace Albite.Serialization.Test.Windows
 {
@@ -374,6 +375,46 @@ namespace Albite.Serialization.Test.Windows
             test(n);
             test((object)arr1);
             test((object)arr2);
+        }
+
+        [Serialized]
+        private class LA<T> : List<T>
+        {
+            [Serialized]
+            private int x;
+
+            protected LA() { }
+
+            public LA(int x)
+            {
+                this.x = x;
+            }
+        }
+
+        [Serialized]
+        private class LB<T> : LA<T>
+        {
+            [Serialized]
+            private int y;
+
+            protected LB() { }
+
+            public LB(int x, int y)
+                : base(x)
+            {
+                this.y = y;
+            }
+        }
+
+        [TestMethod]
+        public void CustomListTest()
+        {
+            LB<string> x = new LB<string>(1, 2);
+            x.AddRange(new string[] { "One", "Two", "Ten" });
+
+            ICollection<string>[] arr = { x, x, new LB<string>(10, 20) };
+            test(x);
+            test((object)arr);
         }
     }
 }
