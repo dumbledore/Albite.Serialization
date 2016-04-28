@@ -22,9 +22,8 @@ namespace Albite.Serialization.Internal.Readers
             {
                 ISerializer s = context.CreateSerializer();
                 object value = s.Read(context);
-                TypeInfo info = value.GetType().GetTypeInfo();
 
-                if (!_info.IsAssignableFrom(info))
+                if (value != null && !_info.IsAssignableFrom(value.GetType().GetTypeInfo()))
                 {
                     throw new InvalidCastException("Read object is not from the right type");
                 }

@@ -9,6 +9,7 @@ namespace Albite.Serialization.Internal.Writers
     {
         private MemberSerializer[] _members;
         private ObjectSerializer _parent;
+        private Boolean _serialized;
 
         private ClassSerializer() { }
 
@@ -17,10 +18,11 @@ namespace Albite.Serialization.Internal.Writers
             context.WriteType(type);
 
             TypeInfo info = type.GetTypeInfo();
+            _serialized = info.IsSerialized();
 
             // Create the member serializers if the class
             // has the Serialized attribute
-            if (info.IsSerialized())
+            if (_serialized)
             {
                 context.Writer.Write(true);
                 _members = createMembers(context, info);
@@ -33,6 +35,11 @@ namespace Albite.Serialization.Internal.Writers
 
             // Create the parent
             _parent = createParent(context, info);
+        }
+
+        protected override bool IsSerialized
+        {
+            get { return _serialized; }
         }
 
         protected override void WriteObject(IContext context, object value)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Albite.Core.IO;
+using System;
 
 namespace Albite.Serialization.Internal.Writers
 {
@@ -14,20 +15,35 @@ namespace Albite.Serialization.Internal.Writers
                 throw new System.InvalidOperationException("value can't be null");
             }
 
-            // Was it serialized already?
-            uint id;
-            if (context.ObjectCache.GetId(value, out id))
+            // Is the object to be serialized at all?
+            if (IsSerialized)
             {
-                // Already seriaized
-                context.Writer.Write(true);
-                context.Writer.Write(id);
+                // Was it serialized already?
+                uint id;
+                if (context.ObjectCache.GetId(value, out id))
+                {
+                    // Already seriaized
+                    context.Writer.WriteSmallEnum(ObjectType.Cached);
+                    context.Writer.Write(id);
+                }
+                else
+                {
+                    context.Writer.WriteSmallEnum(ObjectType.New);
+                    // Now serialize it, no need to write the ID
+                    WriteObject(context, value);
+                }
             }
             else
             {
-                context.Writer.Write(false);
-                // Now serialize it, no need to write the ID
-                WriteObject(context, value);
+                context.Writer.WriteSmallEnum(ObjectType.NotSerialized);
             }
+        }
+
+        // We still need a Serializer even if it is not serialized,
+        // due to ClassSerializers, etc.
+        protected virtual bool IsSerialized
+        {
+            get { return true; }
         }
 
         protected abstract void WriteObject(IContext context, object value);
