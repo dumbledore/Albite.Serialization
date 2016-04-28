@@ -65,7 +65,7 @@ namespace Albite.Serialization.Test.Windows
                         Debug.WriteLine("[Test] Reading next value...");
                         object valueRead = reader.ReadObject();
                         values[i] = valueRead;
-                        Debug.WriteLine("[Test] Read {0}:{1}\n", valueRead.GetType().FullName, valueRead);
+                        Debug.WriteLine("[Test] Read {0}:{1}\n", valueRead == null ? null : valueRead.GetType().FullName, valueRead);
                     }
                 }
             }
