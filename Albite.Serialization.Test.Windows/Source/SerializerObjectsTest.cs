@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using System;
+using Albite.Core;
 
 namespace Albite.Serialization.Test.Windows
 {
@@ -84,7 +85,7 @@ namespace Albite.Serialization.Test.Windows
 
             A[] ar1 = new A[] { a1, a2, a3 };
             B[] ar2 = new B[] { b1 };
-            A[] ar3 = ar2; // TODO -> Arrays are classes after all, so this is possible
+            A[] ar3 = ar2; // Arrays are classes after all, so this is possible
             A[] ar4 = new A[] { a1, b1 };
             C[] ar5 = new C[] { c1, c2, c3, c4 };
             A[][] ar6 = new A[][] { ar2, ar3, };
@@ -157,16 +158,11 @@ namespace Albite.Serialization.Test.Windows
         [TestMethod]
         public void SerializeStruct()
         {
-            try
+            Core.UnitTest.Assert.ThrowsException<NotSupportedException>(() =>
             {
                 S s;
                 test(s);
-                throw new InvalidOperationException("Why do we support structs?");
-            }
-            catch (NotSupportedException)
-            {
-                // As excepted
-            }
+            });
         }
 
         [Serialized]
