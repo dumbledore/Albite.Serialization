@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
+using Albite.Core.Collections;
 
 namespace Albite.Serialization.Internal.Writers.Collections
 {
@@ -19,31 +19,12 @@ namespace Albite.Serialization.Internal.Writers.Collections
             _nested = context.CreateProxy(elementType);
         }
 
-        // Because some classes (e.g. HashSet) do not inherit from ICollection,
-        // but only from ICollection<>, we need to use cast directly to ICollection
-        // for those who implement it, or use reflection for ICollection<>
-        // (which incurs quite some overhead), and the easiest way is simply
-        // to leave the compiler to handle it through "dynamic".
-        private static int GetCollectionCount(IEnumerable collection)
-        {
-            if (collection is ICollection)
-            {
-                return ((ICollection)collection).Count;
-            }
-            else
-            {
-                PropertyInfo property = collection.GetType().GetTypeInfo().
-                    DeclaredProperties.First(p => p.Name == "Count");
-                return (int)property.GetValue(collection);
-            }
-        }
-
         protected override void WriteObject(IContext context, object value)
         {
             IEnumerable collection = (IEnumerable)value;
 
             // Now write the size
-            context.Writer.Write(GetCollectionCount(collection));
+            context.Writer.Write(collection.Count());
 
             // And finally write all the elements
             foreach (var element in collection)
