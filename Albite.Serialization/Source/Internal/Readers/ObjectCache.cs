@@ -20,7 +20,7 @@ namespace Albite.Serialization.Internal.Readers
         /// <summary>
         /// Caches the object and retrieves its unique id
         /// </summary>
-        /// <param name="o">The object to be cached</param>
+        /// <param name="value">The object to be cached</param>
         /// <returns>The object id</returns>
         public uint Add(T value)
         {
