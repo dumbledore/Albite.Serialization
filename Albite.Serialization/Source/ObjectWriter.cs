@@ -1,4 +1,5 @@
-﻿using Albite.Serialization.Internal.Writers;
+﻿using Albite.Core.IO;
+using Albite.Serialization.Internal.Writers;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
@@ -74,21 +75,16 @@ namespace Albite.Serialization
         /// <summary>
         /// Serialize an object to an output stream.
         /// </summary>
-        /// <exception cref="System.ArgumentNullException">
-        /// <c>value</c> is <c>null</c>.
-        /// </exception>
         /// <param name="value">The object being serialized.</param>
         public void WriteObject(object value)
         {
             if (value == null)
             {
-                // The value can't be null, because one wouldn't be able
-                // to get the type - yes, on Read() one can return null,
-                // what should its type be?
-                throw new System.ArgumentNullException("Value can't be null");
+                this.WriteSmallEnum(Internal.SerializedType.Null);
+                return;
             }
 
-            var s = _context.CreateSerializer(value.GetType());
+            var s = _context.CreateSerializer(value == null ? null : value.GetType());
             s.Write(_context, value);
         }
 

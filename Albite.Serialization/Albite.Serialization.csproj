@@ -57,6 +57,7 @@
     <Compile Include="Source\Internal\Readers\Descriptors.cs" />
     <Compile Include="Source\Internal\Readers\IDescriptor.cs" />
     <Compile Include="Source\Internal\Readers\IInitiailzableSerializer.cs" />
+    <Compile Include="Source\Internal\Readers\Primitives\NullSerializer.cs" />
     <Compile Include="Source\Internal\Readers\SerializerCache.cs" />
     <Compile Include="Source\Internal\SerializedType.cs" />
     <Compile Include="Source\Internal\Version.cs" />

@@ -39,12 +39,13 @@ namespace Albite.Serialization.Test.Windows
                 {
                     foreach (var value in values)
                     {
+                        string typeName = (value == null) ? null : value.GetType().FullName;
                         long l = stream.Length;
-                        Debug.WriteLine("[Test] Writing {0}:{1}", value.GetType().FullName, value);
+                        Debug.WriteLine("[Test] Writing {0}:{1}", typeName, value);
                         writer.WriteObject(value);
                         l = stream.Length - l;
                         Debug.WriteLine("[Test] Finished writing {0}:{1} Payload: {2} bytes\n",
-                            value.GetType().FullName, value, l);
+                            typeName, value, l);
                     }
                 }
 

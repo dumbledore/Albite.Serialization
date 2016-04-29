@@ -2,6 +2,7 @@
 {
     enum SerializedType
     {
+        Null,
         Cached, // An already serialized definition of a serializer
         Primitive,
         Enum,

@@ -416,5 +416,17 @@ namespace Albite.Serialization.Test.Windows
             test(x);
             test((object)arr);
         }
+
+        [TestMethod]
+        public void NullObjectTest()
+        {
+            object o = null;
+            I i = null;
+            A a = null;
+
+            test(o);
+            test(i);
+            test(a);
+        }
     }
 }

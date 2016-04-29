@@ -12,6 +12,7 @@ namespace Albite.Serialization.Internal.Readers
         static Descriptors()
         {
             Values = new IDescriptor[] {
+                NullSerializer.Descriptor,
                 PrimitiveSerializer.Descriptor,
                 EnumSerializer.Descriptor,
                 TypeSerializer.Descriptor,
