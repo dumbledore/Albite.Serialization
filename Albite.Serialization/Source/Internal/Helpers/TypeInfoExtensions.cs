@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace Albite.Serialization.Internal.Helpers
 {
-    static class TypeInfoExtensions
+    internal static class TypeInfoExtensions
     {
         public static bool IsSerialized(this TypeInfo info)
         {

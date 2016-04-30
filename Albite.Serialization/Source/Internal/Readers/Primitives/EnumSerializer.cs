@@ -1,9 +1,9 @@
-﻿using System;
-using Albite.Core.IO;
+﻿using Albite.Core.IO;
+using System;
 
 namespace Albite.Serialization.Internal.Readers.Primitives
 {
-    class EnumSerializer : IInitiailzableSerializer
+    internal class EnumSerializer : IInitiailzableSerializer
     {
         private Type _enumType;
 

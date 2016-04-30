@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Albite.Core.Reflection;
+using System;
 using System.Reflection;
-using Albite.Core.Reflection;
 
 namespace Albite.Serialization.Internal.Writers.Primitives
 {

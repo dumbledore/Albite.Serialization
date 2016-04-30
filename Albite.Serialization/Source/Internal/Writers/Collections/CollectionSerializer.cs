@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Albite.Core.Collections;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using Albite.Core.Collections;
 
 namespace Albite.Serialization.Internal.Writers.Collections
 {

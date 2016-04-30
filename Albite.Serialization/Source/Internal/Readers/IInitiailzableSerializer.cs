@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Albite.Serialization.Internal.Readers
+﻿namespace Albite.Serialization.Internal.Readers
 {
     internal interface IInitiailzableSerializer : ISerializer
     {

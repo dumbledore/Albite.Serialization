@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Albite.Core.IO;
+using System;
 using System.Reflection;
-using Albite.Core.IO;
 
 namespace Albite.Serialization.Internal.Writers.Primitives
 {
-    class EnumSerializer : IInitiailzableSerializer
+    internal class EnumSerializer : IInitiailzableSerializer
     {
         // Note that enums are value types and behave like integers,
         // and therefore they should not be treated like references,
