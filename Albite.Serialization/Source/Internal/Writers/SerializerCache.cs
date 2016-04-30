@@ -3,10 +3,12 @@ using System.Collections.Generic;
 
 namespace Albite.Serialization.Internal.Writers
 {
+#if DEBUG
     /// <summary>
     /// Used for caching serializers of a type
     /// and making sure each one has a unique ID.
     /// </summary>
+#endif
     internal class SerializerCache
     {
         private readonly Dictionary<Type, KeyValuePair<ISerializer, uint>> _cache

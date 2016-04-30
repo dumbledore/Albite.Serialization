@@ -5,6 +5,7 @@ namespace Albite.Serialization.Internal.Readers
 {
     internal interface IContext
     {
+#if DEBUG
         /// <summary>
         /// Reads a serializer from the stream in BinaryReader.
         ///
@@ -12,30 +13,39 @@ namespace Albite.Serialization.Internal.Readers
         /// return the same serializer for the same type.
         /// </summary>
         /// <returns>The read serializer</returns>
+#endif
         ISerializer CreateSerializer();
 
+#if DEBUG
         /// <summary>
         /// Reads a Type object.
         /// 
         /// Type objects are cached to save space.
         /// </summary>
         /// <returns>The type read</returns>
+#endif
         Type ReadType();
 
+#if DEBUG
         /// <summary>
         /// Used by the serializers for caching objects
         /// and obtaining them from their unique IDs.
         /// </summary>
+#endif
         ObjectCache<object> ObjectCache { get; }
 
+#if DEBUG
         /// <summary>
         /// Retrieves the version of the serializer
         /// </summary>
+#endif
         int Version { get; }
 
+#if DEBUG
         /// <summary>
         /// The reader used for serialization
         /// </summary>
+#endif
         BinaryReader Reader { get; }
     }
 }
