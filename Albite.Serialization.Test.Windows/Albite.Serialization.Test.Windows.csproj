@@ -116,6 +116,7 @@
     <Compile Include="Source\SerializerArrayTest.cs" />
     <Compile Include="Source\SerializerCollectionTest.cs" />
     <Compile Include="Source\SerializerEnumTest.cs" />
+    <Compile Include="Source\SerializerExampleTest.cs" />
     <Compile Include="Source\SerializerTest.cs" />
     <Compile Include="Source\SerializerObjectsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
