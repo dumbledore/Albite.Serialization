@@ -6,7 +6,7 @@ namespace Albite.Serialization.Internal.Helpers
 {
     internal static class TypeInfoExtensions
     {
-        public static MemberValue[] GetSerializedMembers(this TypeInfo info)
+        public static IMemberValue[] GetSerializedMembers(this TypeInfo info)
         {
             return info.GetMembers((memberType, memberInfo) =>
             {

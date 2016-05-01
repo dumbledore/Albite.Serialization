@@ -75,7 +75,7 @@ namespace Albite.Serialization.Internal.Readers
         private static MemberSerializer[] createMembers(IContext context, TypeInfo info)
         {
             // Obtain all available members
-            MemberValue[] members = info.GetSerializedMembers();
+            IMemberValue[] members = info.GetSerializedMembers();
 
             // Read how many members have been serialized
             int membersCount = context.Reader.ReadInt32();
@@ -97,7 +97,7 @@ namespace Albite.Serialization.Internal.Readers
             for (int i = 0; i < membersCount; i++)
             {
                 string name = context.Reader.ReadString();
-                MemberValue m = members.First(member => member.Name == name);
+                IMemberValue m = members.First(member => member.Name == name);
                 ISerializer s = context.CreateSerializer();
                 serializers[i] = new MemberSerializer(s, m);
             }
@@ -122,10 +122,10 @@ namespace Albite.Serialization.Internal.Readers
 
         private class MemberSerializer
         {
-            private readonly MemberValue _member;
+            private readonly IMemberValue _member;
             private readonly ISerializer _serializer;
 
-            public MemberSerializer(ISerializer serializer, MemberValue member)
+            public MemberSerializer(ISerializer serializer, IMemberValue member)
             {
                 this._serializer = serializer;
                 this._member = member;

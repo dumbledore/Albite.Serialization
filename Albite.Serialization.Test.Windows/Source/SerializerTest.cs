@@ -261,7 +261,7 @@ namespace Albite.Serialization.Test.Windows
                 }
 
                 // We already know that both objects have the same type
-                MemberValue[] members = getMembers(info);
+                IMemberValue[] members = getMembers(info);
 
                 Debug.WriteLine("Comparing objects of class `{0}`", type.Name);
 
@@ -282,7 +282,7 @@ namespace Albite.Serialization.Test.Windows
                 }
             }
 
-            private static MemberValue[] getMembers(TypeInfo info)
+            private static IMemberValue[] getMembers(TypeInfo info)
             {
                 return info.GetMembers((memberType, memberInfo) =>
                 {

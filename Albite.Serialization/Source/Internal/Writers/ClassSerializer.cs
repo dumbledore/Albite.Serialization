@@ -39,7 +39,7 @@ namespace Albite.Serialization.Internal.Writers
         private static MemberSerializer[] createMembers(IContext context, TypeInfo info)
         {
             // Get the serializers for the type's members
-            MemberValue[] members = info.GetSerializedMembers();
+            IMemberValue[] members = info.GetSerializedMembers();
 
             // Now Create the member serializers
             MemberSerializer[] serializers = new MemberSerializer[members.Length];
@@ -49,7 +49,7 @@ namespace Albite.Serialization.Internal.Writers
 
             for (int i = 0; i < serializers.Length; i++)
             {
-                MemberValue m = members[i];
+                IMemberValue m = members[i];
 
                 // Write the name of the member
                 context.Writer.Write(m.Name);
@@ -81,10 +81,10 @@ namespace Albite.Serialization.Internal.Writers
 
         private class MemberSerializer
         {
-            private readonly MemberValue _member;
+            private readonly IMemberValue _member;
             private readonly ISerializer _serializer;
 
-            public MemberSerializer(ISerializer serializer, MemberValue member)
+            public MemberSerializer(ISerializer serializer, IMemberValue member)
             {
                 this._serializer = serializer;
                 this._member = member;
