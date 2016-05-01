@@ -86,7 +86,8 @@ namespace Albite.Serialization.Internal.Writers.Primitives
                     break;
 
                 default:
-                    throw new InvalidOperationException();
+                    throw new InvalidOperationException(
+                        String.Format("Unknown typecode: {0}", _code));
             }
         }
 

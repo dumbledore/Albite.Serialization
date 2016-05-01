@@ -42,7 +42,9 @@ namespace Albite.Serialization.Internal.Writers
                 TypeInfo info = type.GetTypeInfo();
                 if (!_info.IsAssignableFrom(info))
                 {
-                    throw new InvalidOperationException();
+                    throw new InvalidCastException(String.Format(
+                        "Written object is of type {0} when expected {1}",
+                        type.Name, _info.AsType().Name));
                 }
 #endif
                 ISerializer s = context.CreateSerializer(type);

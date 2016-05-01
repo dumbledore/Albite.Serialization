@@ -68,7 +68,8 @@ namespace Albite.Serialization.Internal.Writers
                     }
                 }
 
-                throw new NotSupportedException("Type " + type + " is not supported");
+                throw new NotSupportedException(String.Format(
+                    "Type {0} is not supported", type.Name));
             }
         }
 

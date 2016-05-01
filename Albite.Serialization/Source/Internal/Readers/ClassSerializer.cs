@@ -60,8 +60,9 @@ namespace Albite.Serialization.Internal.Readers
 
                 if (ctrs.Count() == 0)
                 {
-                    throw new InvalidOperationException(
-                        "Serialized classes must have a default constructor");
+                    throw new InvalidOperationException(string.Format(
+                        "Serialized class of type {0} does not have a default constructor",
+                        info.AsType().Name));
                 }
 
                 return ctrs.First();
@@ -88,8 +89,9 @@ namespace Albite.Serialization.Internal.Readers
             // would throw an ArgumentException
             if (members.Length != membersCount)
             {
-                throw new InvalidOperationException(
-                    "Class members are different than what was serialized");
+                throw new InvalidOperationException(string.Format(
+                    "Class members of type {0} are different than what was serialized",
+                    info.AsType().Name));
             }
 
             MemberSerializer[] serializers = new MemberSerializer[membersCount];

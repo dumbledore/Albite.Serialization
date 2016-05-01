@@ -60,7 +60,8 @@ namespace Albite.Serialization.Internal.Readers.Primitives
                     return reader.ReadGuid();
 
                 default:
-                    throw new InvalidOperationException();
+                    throw new InvalidOperationException(
+                        String.Format("Unknown typecode: {0}", _code));
             }
         }
 
