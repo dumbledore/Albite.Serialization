@@ -1,7 +1,4 @@
-﻿using Albite.Core.IO;
-using System;
-
-namespace Albite.Serialization.Internal.Readers
+﻿namespace Albite.Serialization.Internal.Readers
 {
     internal abstract class ObjectSerializer : IInitiailzableSerializer
     {
@@ -9,31 +6,26 @@ namespace Albite.Serialization.Internal.Readers
 
         public object Read(IContext context)
         {
-            ObjectType t = context.Reader.ReadSmallEnum<ObjectType>();
+            bool serialized = context.Reader.ReadBoolean();
 
-            switch (t)
+            if (serialized)
             {
-                case ObjectType.NotSerialized:
-                    return null;
-
-                case ObjectType.Cached:
-                    uint id = context.Reader.ReadUInt32();
-                    return context.ObjectCache.Get(id);
-
-                case ObjectType.New:
-                    // Create the object
-                    object o = CreateObject(context);
-
-                    // Cache it
-                    context.ObjectCache.Add(o);
-
-                    // Go on with reading it
-                    ReadObject(context, o);
-
-                    return o;
+                uint id = context.Reader.ReadUInt32();
+                return context.ObjectCache.Get(id);
             }
+            else
+            {
+                // Create the object
+                object o = CreateObject(context);
 
-            throw new InvalidOperationException();
+                // Cache it
+                context.ObjectCache.Add(o);
+
+                // Go on with reading it
+                ReadObject(context, o);
+
+                return o;
+            }
         }
 
         protected abstract object CreateObject(IContext context);

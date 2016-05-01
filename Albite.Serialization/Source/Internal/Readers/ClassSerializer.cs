@@ -9,9 +9,9 @@ namespace Albite.Serialization.Internal.Readers
 {
     internal class ClassSerializer : ObjectSerializer
     {
-        private ConstructorInfo _ctr = null;
-        private MemberSerializer[] _members = null;
-        private ObjectSerializer _parent = null;
+        private ConstructorInfo _ctr;
+        private MemberSerializer[] _members;
+        private ObjectSerializer _parent;
 
         private ClassSerializer() { }
 
@@ -20,29 +20,14 @@ namespace Albite.Serialization.Internal.Readers
             Type type = context.ReadType();
             TypeInfo info = type.GetTypeInfo();
 
-            bool isSerialized = context.Reader.ReadBoolean();
-#if DEBUG
-            if (isSerialized != info.IsSerialized())
-            {
-                throw new InvalidOperationException("The serialized attribute state has changed");
-            }
-#endif
-            if (isSerialized)
-            {
-                _ctr = createConstructor(context, info);
-                _members = createMembers(context, info);
-            }
-
+            _ctr = createConstructor(context, info);
+            _members = createMembers(context, info);
             _parent = createParent(context, info);
         }
 
         protected override object CreateObject(IContext context)
         {
-            if (_members == null)
-            {
-                throw new InvalidOperationException("Class is not serialized");
-            }
-            else if (_ctr == null)
+            if (_ctr == null)
             {
                 throw new InvalidOperationException("Cannot create abstract object");
             }
@@ -52,13 +37,9 @@ namespace Albite.Serialization.Internal.Readers
 
         protected override void ReadObject(IContext context, object value)
         {
-            if (_members != null)
+            foreach (MemberSerializer m in _members)
             {
-                // The class is serialized
-                foreach (MemberSerializer m in _members)
-                {
-                    m.Read(context, value);
-                }
+                m.Read(context, value);
             }
 
             if (_parent != null)
@@ -126,23 +107,16 @@ namespace Albite.Serialization.Internal.Readers
 
         private static ObjectSerializer createParent(IContext context, TypeInfo info)
         {
-            bool isParentSerialized = context.Reader.ReadBoolean();
+            Type parent = info.BaseType;
 
-            if (isParentSerialized)
+            if (parent == null || typeof(Object).Equals(parent))
             {
-#if DEBUG
-                // Has the type's Serialized attribute state changed?
-                Type parent = info.BaseType;
-                if (parent == null || typeof(Object).Equals(parent))
-                {
-                    throw new InvalidOperationException("Parent shouldn't have been serialized");
-                }
-#endif
-                return (ObjectSerializer)context.CreateSerializer();
+                // reached the root
+                return null;
             }
             else
             {
-                return null;
+                return (ObjectSerializer)context.CreateSerializer();
             }
         }
 

@@ -9,7 +9,6 @@ namespace Albite.Serialization.Internal.Writers
     {
         private MemberSerializer[] _members;
         private ObjectSerializer _parent;
-        private Boolean _serialized;
 
         private ClassSerializer() { }
 
@@ -18,39 +17,16 @@ namespace Albite.Serialization.Internal.Writers
             context.WriteType(type);
 
             TypeInfo info = type.GetTypeInfo();
-            _serialized = info.IsSerialized();
 
-            // Create the member serializers if the class
-            // has the Serialized attribute
-            if (_serialized)
-            {
-                context.Writer.Write(true);
-                _members = createMembers(context, info);
-            }
-            else
-            {
-                context.Writer.Write(false);
-                _members = null;
-            }
-
-            // Create the parent
+            _members = createMembers(context, info);
             _parent = createParent(context, info);
-        }
-
-        protected override bool IsSerialized
-        {
-            get { return _serialized; }
         }
 
         protected override void WriteObject(IContext context, object value)
         {
-            if (_members != null)
+            foreach (var m in _members)
             {
-                // This class has the Serialized attribute
-                foreach (var m in _members)
-                {
-                    m.Write(context, value);
-                }
+                m.Write(context, value);
             }
 
             if (_parent != null)
@@ -90,19 +66,16 @@ namespace Albite.Serialization.Internal.Writers
 
         private static ObjectSerializer createParent(IContext context, TypeInfo info)
         {
-            // We'll need to serialize the parent as well in all cases
             Type parent = info.BaseType;
 
-            if (parent != null && !typeof(Object).Equals(parent))
+            if (parent == null || typeof(Object).Equals(parent))
             {
-                context.Writer.Write(true);
-                return (ObjectSerializer)context.CreateSerializer(parent);
+                // reached the root
+                return null;
             }
             else
             {
-                // Not serializing the parent
-                context.Writer.Write(false);
-                return null;
+                return (ObjectSerializer)context.CreateSerializer(parent);
             }
         }
 

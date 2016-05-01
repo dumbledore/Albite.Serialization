@@ -12,7 +12,6 @@ namespace Albite.Serialization.Test.Windows
         {
         }
 
-        [Serialized]
         private class A : I
         {
             [Serialized]
@@ -33,7 +32,6 @@ namespace Albite.Serialization.Test.Windows
             }
         }
 
-        [Serialized]
         private class B : A
         {
             [Serialized]
@@ -48,7 +46,6 @@ namespace Albite.Serialization.Test.Windows
             }
         }
 
-        [Serialized]
         private class C
         {
             [Serialized]
@@ -109,7 +106,6 @@ namespace Albite.Serialization.Test.Windows
             test(ar7);
         }
 
-        [Serialized]
         private class R
         {
             [Serialized]
@@ -133,7 +129,6 @@ namespace Albite.Serialization.Test.Windows
 
         private class CustomSerializedAttribute : SerializedAttribute { }
 
-        [CustomSerialized]
         private class CA
         {
             private CA() { }
@@ -166,7 +161,6 @@ namespace Albite.Serialization.Test.Windows
             });
         }
 
-        [Serialized]
         private class X : I
         {
             [Serialized]
@@ -180,7 +174,6 @@ namespace Albite.Serialization.Test.Windows
             }
         }
 
-        [Serialized]
         private class Y : I
         {
             [Serialized]
@@ -217,7 +210,6 @@ namespace Albite.Serialization.Test.Windows
             test((object)i5);
         }
 
-        [Serialized]
         private class G<T>
         {
             [Serialized]
@@ -235,7 +227,6 @@ namespace Albite.Serialization.Test.Windows
             }
         }
 
-        [Serialized]
         private class H
         {
             [Serialized]
@@ -249,7 +240,6 @@ namespace Albite.Serialization.Test.Windows
             }
         }
 
-        [Serialized]
         private class J : H
         {
             [Serialized]
@@ -278,7 +268,6 @@ namespace Albite.Serialization.Test.Windows
             test(g3);
         }
 
-        [Serialized]
         private class K : I
         {
             [Serialized]
@@ -316,7 +305,6 @@ namespace Albite.Serialization.Test.Windows
             }
         }
 
-        [Serialized]
         private class M : L
         {
             int n3;
@@ -335,7 +323,6 @@ namespace Albite.Serialization.Test.Windows
             }
         }
 
-        [Serialized]
         private class N : M
         {
             [Serialized]
@@ -377,7 +364,6 @@ namespace Albite.Serialization.Test.Windows
             test((object)arr2);
         }
 
-        [Serialized]
         private class LA<T> : List<T>
         {
             [Serialized]
@@ -391,7 +377,6 @@ namespace Albite.Serialization.Test.Windows
             }
         }
 
-        [Serialized]
         private class LB<T> : LA<T>
         {
             [Serialized]

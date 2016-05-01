@@ -65,7 +65,6 @@ namespace Albite.Serialization.Test.Windows
             Assert.AreEqual(typeof(string), t);
         }
 
-        [Serialized]
         private class MyClass
         {
             private byte _b;

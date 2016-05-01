@@ -255,20 +255,6 @@ namespace Albite.Serialization.Test.Windows
             {
                 TypeInfo info = type.GetTypeInfo();
 
-                if (!hasAttribute(info.CustomAttributes))
-                {
-                    if (type.Equals(o1.GetType()) && o2 != null)
-                    {
-                        // This is only valid if we are checking the derived type
-                        // It will be not valid to check it for any base type
-                        throw new Exception("the value has been serialized when it shouldn't have");
-                    }
-
-                    // Nothing left to do
-                    Debug.WriteLine("Class `{0}` not serialized", type.Name);
-                    return;
-                }
-
                 if (!o1.GetType().Equals(o2.GetType()))
                 {
                     throw new Exception("Read value has a different type");
@@ -300,13 +286,9 @@ namespace Albite.Serialization.Test.Windows
             {
                 return info.GetMembers((memberType, memberInfo) =>
                 {
-                    return hasAttribute(memberInfo.CustomAttributes);
+                    return memberInfo.CustomAttributes.Any(
+                        a => _info.IsAssignableFrom(a.AttributeType.GetTypeInfo()));
                 });
-            }
-
-            private static bool hasAttribute(IEnumerable<CustomAttributeData> attribs)
-            {
-                return attribs.Any(a => _info.IsAssignableFrom(a.AttributeType.GetTypeInfo()));
             }
         }
     }

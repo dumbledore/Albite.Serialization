@@ -40,11 +40,10 @@ Then, reading it back:
 
 ### Serializing Custom Classes
 
-If one needs to serialize a class, one needs to add the `Serialized` attribute to the class and its members.
+If one needs to serialize a class, one needs to add the `Serialized` attribute to members of that class that need to be serialized.
 
 For example, this is a class that is ready to be serialized:
 
-    [Serialized]
     private class MyClass
     {
         private byte _b;
