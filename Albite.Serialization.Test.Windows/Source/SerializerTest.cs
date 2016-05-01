@@ -248,17 +248,28 @@ namespace Albite.Serialization.Test.Windows
 
             private void verifyClass(object o1, object o2)
             {
-                verifyClass(o1.GetType(), o1, o2);
-            }
-
-            private void verifyClass(Type type, object o1, object o2)
-            {
-                TypeInfo info = type.GetTypeInfo();
-
                 if (!o1.GetType().Equals(o2.GetType()))
                 {
                     throw new Exception("Read value has a different type");
                 }
+
+                verifyClass(o1.GetType(), o1, o2);
+            }
+
+            // The type parameter here is used
+            // to serialize the objects up the hierarchy, i.e.
+            // starting from the actual type of the object
+            // and then going up to the root, checking the members
+            // at each level.
+            private void verifyClass(Type type, object o1, object o2)
+            {
+                if (typeof(Object).Equals(type))
+                {
+                    // Nothing to verify on the root type
+                    return;
+                }
+
+                TypeInfo info = type.GetTypeInfo();
 
                 // We already know that both objects have the same type
                 IMemberValue[] members = getMembers(info);
