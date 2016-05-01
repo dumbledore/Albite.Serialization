@@ -462,5 +462,42 @@ namespace Albite.Serialization.Test.Windows
             test(a);
             test((object)arr);
         }
+
+        private class ClassWithIndexer
+        {
+            string[] _arr;
+
+            private ClassWithIndexer() { }
+
+            public ClassWithIndexer(int size)
+            {
+                _arr = new string[size];
+            }
+
+            [Serialized]
+            public string this[int index]
+            {
+                get
+                {
+                    return _arr[index];
+                }
+
+                set
+                {
+                    _arr[index] = value;
+                }
+            }
+        }
+
+        [TestMethod]
+        public void ClassWithIndexerTest()
+        {
+            ClassWithIndexer c = new ClassWithIndexer(10);
+            c[0]="Hello";
+            c[1]="there!";
+
+            // this should pass as the indexer would not have been serialized!
+            test(c);
+        }
     }
 }
