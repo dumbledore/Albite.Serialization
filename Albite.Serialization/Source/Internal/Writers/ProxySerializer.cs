@@ -1,5 +1,5 @@
-﻿using System;
-using System.Diagnostics;
+﻿using Albite.Core.Diagnostics;
+using System;
 using System.Reflection;
 
 namespace Albite.Serialization.Internal.Writers
@@ -27,14 +27,14 @@ namespace Albite.Serialization.Internal.Writers
             if (value == null)
             {
 #if DEBUG
-                Debug.WriteLine("Proxy: Writing a null value");
+                Logger.LogMessage("Proxy: Writing a null value");
 #endif
                 context.Writer.Write(false);
             }
             else
             {
 #if DEBUG
-                Debug.WriteLine("Proxy: Writing a value: {0}", value);
+                Logger.LogMessage("Proxy: Writing a value: {0}", value);
 #endif
                 context.Writer.Write(true);
                 Type type = value.GetType();

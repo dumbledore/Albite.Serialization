@@ -1,66 +1,47 @@
-﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using System.Collections.Generic;
+﻿using Albite.Core.Test;
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
-namespace Albite.Serialization.Test.Windows
+namespace Albite.Serialization.Test
 {
     [TestClass]
-    public class SerializerCollectionTest : SerializerTest
+    public class SerializerCollectionTestW : UnitTest
     {
-        private enum E
-        {
-            Zero,
-            One,
-            Ten = 10,
-        }
-
-        private static readonly E[] Sample = { E.Zero, E.Zero, E.Ten, E.One, };
+        private readonly SerializerCollectionTest _test = new SerializerCollectionTest();
 
         [TestMethod]
         public void ListTest()
         {
-            List<E> list = new List<E>();
-            foreach (var e in Sample) list.Add(e);
-            test(list);
+            _test.ListTest();
         }
 
         [TestMethod]
         public void LinkedListTest()
         {
-            LinkedList<E> list = new LinkedList<E>();
-            foreach (var e in Sample) list.AddLast(e);
-            test(list);
+            _test.LinkedListTest();
         }
 
         [TestMethod]
         public void StackTest()
         {
-            Stack<E> stack = new Stack<E>();
-            foreach (var e in Sample) stack.Push(e);
-            test(stack);
+            _test.StackTest();
         }
 
         [TestMethod]
         public void QueueTest()
         {
-            List<E> queue = new List<E>();
-            foreach (var e in Sample) queue.Add(e);
-            test(queue);
+            _test.QueueTest();
         }
 
         [TestMethod]
         public void HashSetTest()
         {
-            HashSet<E> set = new HashSet<E>();
-            foreach (var e in Sample) set.Add(e);
-            test(set);
+            _test.HashSetTest();
         }
 
         [TestMethod]
         public void SortedSetTest()
         {
-            SortedSet<E> set = new SortedSet<E>();
-            foreach (var e in Sample) set.Add(e);
-            test(set);
+            _test.SortedSetTest();
         }
     }
 }

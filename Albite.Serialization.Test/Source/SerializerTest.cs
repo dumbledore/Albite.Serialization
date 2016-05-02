@@ -1,16 +1,16 @@
 ﻿using Albite.Core;
 using Albite.Core.Collections;
+using Albite.Core.Diagnostics;
 using Albite.Core.Reflection;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace Albite.Serialization.Test.Windows
+namespace Albite.Serialization.Test
 {
     public abstract class SerializerTest
     {
@@ -41,10 +41,10 @@ namespace Albite.Serialization.Test.Windows
                     {
                         string typeName = (value == null) ? null : value.GetType().FullName;
                         long l = stream.Length;
-                        Debug.WriteLine("[Test] Writing {0}:{1}", typeName, value);
+                        Logger.LogMessage("[Test] Writing {0}:{1}", typeName, value);
                         writer.WriteObject(value);
                         l = stream.Length - l;
-                        Debug.WriteLine("[Test] Finished writing {0}:{1} Payload: {2} bytes\n",
+                        Logger.LogMessage("[Test] Finished writing {0}:{1} Payload: {2} bytes\n",
                             typeName, value, l);
                     }
                 }
@@ -63,10 +63,10 @@ namespace Albite.Serialization.Test.Windows
                 {
                     for (int i = 0; i < count; i++)
                     {
-                        Debug.WriteLine("[Test] Reading next value...");
+                        Logger.LogMessage("[Test] Reading next value...");
                         object valueRead = reader.ReadObject();
                         values[i] = valueRead;
-                        Debug.WriteLine("[Test] Read {0}:{1}\n", valueRead == null ? null : valueRead.GetType().FullName, valueRead);
+                        Logger.LogMessage("[Test] Read {0}:{1}\n", valueRead == null ? null : valueRead.GetType().FullName, valueRead);
                     }
                 }
             }
@@ -106,7 +106,7 @@ namespace Albite.Serialization.Test.Windows
                     if (info.IsType() || info.IsEnum || (code != TypeCode.Object && code != TypeCode.Empty))
                     {
                         // Compare them directly for value(-like) types
-                        Debug.WriteLine("Comparing values `{0}` and `{1}`", value, valueRead);
+                        Logger.LogMessage("Comparing values `{0}` and `{1}`", value, valueRead);
                         if (!value.Equals(valueRead))
                         {
                             throw new Exception("Values don't match");
@@ -120,7 +120,7 @@ namespace Albite.Serialization.Test.Windows
                         {
                             // Already compared or being compared now.
                             // Make sure RHS is still the same, i.e. o2 is o2Cached
-                            Debug.WriteLine("Object `{0}` already (being) serialized", value);
+                            Logger.LogMessage("Object `{0}` already (being) serialized", value);
                             if (!object.ReferenceEquals(valueRead, o2Cached))
                             {
                                 throw new Exception("References do not match");
@@ -177,7 +177,7 @@ namespace Albite.Serialization.Test.Windows
 
             private void verifyEnumerable(IEnumerable e1, IEnumerable e2, bool sorted)
             {
-                Debug.WriteLine("Comparing {0} enumerables", sorted ? "sorted" : "unsorted");
+                Logger.LogMessage("Comparing {0} enumerables", sorted ? "sorted" : "unsorted");
 
                 List<object> l1 = new List<object>();
                 foreach (var e in e1) l1.Add(e);
@@ -214,7 +214,7 @@ namespace Albite.Serialization.Test.Windows
 
             private void verifyDictionary(IDictionary d1, IDictionary d2, bool sorted)
             {
-                Debug.WriteLine("Comparing {0} dictionaries", sorted ? "sorted" : "unsorted");
+                Logger.LogMessage("Comparing {0} dictionaries", sorted ? "sorted" : "unsorted");
 
                 if (d1.Count != d2.Count)
                 {
@@ -274,11 +274,11 @@ namespace Albite.Serialization.Test.Windows
                 // We already know that both objects have the same type
                 IMemberValue[] members = getMembers(info);
 
-                Debug.WriteLine("Comparing objects of class `{0}`", type.Name);
+                Logger.LogMessage("Comparing objects of class `{0}`", type.Name);
 
                 foreach (var m in members)
                 {
-                    Debug.WriteLine("Comparing member `{0}` of type `{1}` for class `{2}`",
+                    Logger.LogMessage("Comparing member `{0}` of type `{1}` for class `{2}`",
                         m.Name, m.MemberType.Name, type.Name);
 
                     object value1 = m.GetValue(o1);

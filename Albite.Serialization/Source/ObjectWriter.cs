@@ -1,6 +1,6 @@
-﻿using Albite.Core.IO;
+﻿using Albite.Core.Diagnostics;
+using Albite.Core.IO;
 using Albite.Serialization.Internal.Writers;
-using System.Diagnostics;
 using System.IO;
 using System.Text;
 
@@ -91,32 +91,32 @@ namespace Albite.Serialization
 #if DEBUG
         public override void Write(bool value)
         {
-            Debug.WriteLine("Write bool: {0}", value);
+            Logger.LogMessage("Write bool: {0}", value);
             base.Write(value);
         }
 
         public override void Write(byte value)
         {
-            Debug.WriteLine("Write byte: {0}", value);
+            Logger.LogMessage("Write byte: {0}", value);
             base.Write(value);
         }
 
         public override void Write(int value)
         {
-            Debug.WriteLine("Write int: {0}", value);
+            Logger.LogMessage("Write int: {0}", value);
             base.Write(value);
         }
 
         public override void Write(uint value)
         {
-            Debug.WriteLine("Write uint: {0}", value);
+            Logger.LogMessage("Write uint: {0}", value);
             base.Write(value);
         }
 
         public override void Write(string value)
         {
             base.Write(value);
-            Debug.WriteLine("Write string: {0}", value);
+            Logger.LogMessage("Write string: {0}", value);
         }
 #endif
     }

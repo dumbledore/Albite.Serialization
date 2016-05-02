@@ -1,7 +1,7 @@
 ﻿using Albite.Core.Collections;
+using Albite.Core.Diagnostics;
 using Albite.Core.IO;
 using System;
-using System.Diagnostics;
 using System.IO;
 
 namespace Albite.Serialization.Internal.Writers
@@ -20,7 +20,7 @@ namespace Albite.Serialization.Internal.Writers
             this.Writer = writer;
 
 #if DEBUG
-            Debug.WriteLine("New Writers.Context. Version={0}", Version.Current);
+            Logger.LogMessage("New Writers.Context. Version={0}", Version.Current);
 #endif
             writer.Write(Version.Current);
         }
@@ -28,7 +28,7 @@ namespace Albite.Serialization.Internal.Writers
         public ISerializer CreateSerializer(Type type)
         {
 #if DEBUG
-            Debug.WriteLine("CreateSerializer for {0}", type.FullName);
+            Logger.LogMessage("CreateSerializer for {0}", type.FullName);
 #endif
 
             ISerializer serializer;
@@ -36,7 +36,7 @@ namespace Albite.Serialization.Internal.Writers
             if (_serializers.TryGet(type, out serializer, out id))
             {
 #if DEBUG
-                Debug.WriteLine("Serializer for {0} cached with id {1}", type.FullName, id);
+                Logger.LogMessage("Serializer for {0} cached with id {1}", type.FullName, id);
 #endif
                 Writer.WriteSmallEnum(SerializedType.Cached);
                 Writer.Write(id);
@@ -49,7 +49,7 @@ namespace Albite.Serialization.Internal.Writers
                     if (descriptor.IsTypeSupported(type))
                     {
 #if DEBUG
-                        Debug.WriteLine("Creating serializer of type {0} for type {1}",
+                        Logger.LogMessage("Creating serializer of type {0} for type {1}",
                             descriptor.SerializedType, type.FullName);
 #endif
                         // Serialize the type of the serialier
@@ -82,7 +82,7 @@ namespace Albite.Serialization.Internal.Writers
             if (_proxies.TryGet(type, out serializer, out id))
             {
 #if DEBUG
-                Debug.WriteLine("Proxy serializer for {0} cached with id {1}", type.FullName, id);
+                Logger.LogMessage("Proxy serializer for {0} cached with id {1}", type.FullName, id);
 #endif
                 // Already cached, write only the id
                 Writer.WriteSmallEnum(SerializedType.CachedProxy);
@@ -91,7 +91,7 @@ namespace Albite.Serialization.Internal.Writers
             else
             {
 #if DEBUG
-                Debug.WriteLine("Creating proxy serializer for type {0}", type.FullName);
+                Logger.LogMessage("Creating proxy serializer for type {0}", type.FullName);
 #endif
                 Writer.WriteSmallEnum(SerializedType.Proxy);
                 // No need to write the ID
@@ -116,7 +116,7 @@ namespace Albite.Serialization.Internal.Writers
             if (_types.GetId(type, out id))
             {
 #if DEBUG
-                Debug.WriteLine("Type {0} cached with id {1}", type.FullName, id);
+                Logger.LogMessage("Type {0} cached with id {1}", type.FullName, id);
 #endif
                 Writer.Write(true);
                 Writer.Write(id);
@@ -124,7 +124,7 @@ namespace Albite.Serialization.Internal.Writers
             else
             {
 #if DEBUG
-                Debug.WriteLine("Writing type {0}", type.FullName);
+                Logger.LogMessage("Writing type {0}", type.FullName);
 #endif
                 Writer.Write(false);
                 Writer.Write(type);

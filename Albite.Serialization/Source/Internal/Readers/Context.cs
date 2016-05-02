@@ -1,6 +1,6 @@
-﻿using Albite.Core.IO;
+﻿using Albite.Core.Diagnostics;
+using Albite.Core.IO;
 using System;
-using System.Diagnostics;
 using System.IO;
 
 namespace Albite.Serialization.Internal.Readers
@@ -20,7 +20,7 @@ namespace Albite.Serialization.Internal.Readers
             int version = reader.ReadInt32();
 
 #if DEBUG
-            Debug.WriteLine("New Readers.Context. Version={0}", version);
+            Logger.LogMessage("New Readers.Context. Version={0}", version);
 #endif
             this.Reader = reader;
             this.Version = version;
@@ -31,7 +31,7 @@ namespace Albite.Serialization.Internal.Readers
             SerializedType type = Reader.ReadSmallEnum<SerializedType>();
 
 #if DEBUG
-            Debug.WriteLine("CreateSerializer for type {0}", type);
+            Logger.LogMessage("CreateSerializer for type {0}", type);
 #endif
             // Handle special types first
             switch (type)
@@ -71,7 +71,7 @@ namespace Albite.Serialization.Internal.Readers
             uint id = Reader.ReadUInt32();
 
 #if DEBUG
-            Debug.WriteLine("Getting cached serializer with id {0}", id);
+            Logger.LogMessage("Getting cached serializer with id {0}", id);
 #endif
             return _serializers.Get(id);
         }
@@ -81,7 +81,7 @@ namespace Albite.Serialization.Internal.Readers
             uint id = Reader.ReadUInt32();
 
 #if DEBUG
-            Debug.WriteLine("Getting cached proxy with id {0}", id);
+            Logger.LogMessage("Getting cached proxy with id {0}", id);
 #endif
             return _proxies.Get(id);
         }
@@ -105,13 +105,13 @@ namespace Albite.Serialization.Internal.Readers
                 type = _types.Get(id);
 
 #if DEBUG
-                Debug.WriteLine("Read cached type {0} with id {1}", type.FullName, id);
+                Logger.LogMessage("Read cached type {0} with id {1}", type.FullName, id);
 #endif
             }
             else
             {
 #if DEBUG
-                Debug.WriteLine("Reading a new type");
+                Logger.LogMessage("Reading a new type");
 #endif
                 type = Reader.ReadType();
                 _types.Add(type);

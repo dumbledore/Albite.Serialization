@@ -1,38 +1,17 @@
-﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
-using System;
+﻿using Albite.Core.Test;
+using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
-namespace Albite.Serialization.Test.Windows
+namespace Albite.Serialization.Test
 {
     [TestClass]
-    public class SerializerTypeTest : SerializerTest
+    public class SerializerTypeTestW : UnitTest
     {
-        private interface I { }
-        private abstract class A : I { }
-        private class B : I { }
-        private class D : B { }
+        private readonly SerializerTypeTest _test = new SerializerTypeTest();
 
         [TestMethod]
         public void TestTypes()
         {
-            Type[] values =
-            {
-                typeof(Int32),
-                typeof(Int32),
-                typeof(Int32).GetType(),
-                typeof(String),
-                typeof(Enum),
-                typeof(Object),
-                typeof(I),
-                typeof(A),
-                typeof(B),
-                typeof(D),
-                typeof(Type),
-                1.GetType(),
-                1.GetType().GetType(),
-                "".GetType(),
-            };
-
-            test(values);
+            _test.TestTypes();
         }
     }
 }
