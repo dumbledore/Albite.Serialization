@@ -18,8 +18,8 @@ namespace Albite.Serialization.Internal.Writers
         {
 #if DEBUG
             _info = type.GetTypeInfo();
-#endif
             context.WriteType(type);
+#endif
         }
 
         public void Write(IContext context, object value)

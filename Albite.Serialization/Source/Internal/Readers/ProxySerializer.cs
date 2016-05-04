@@ -11,9 +11,8 @@ namespace Albite.Serialization.Internal.Readers
 
         public void LateInitialize(IContext context)
         {
-            // Cache the type info as it will be used upon every read
-            Type type = context.ReadType();
 #if DEBUG
+            Type type = context.ReadType();
             _info = type.GetTypeInfo();
 #endif
         }
