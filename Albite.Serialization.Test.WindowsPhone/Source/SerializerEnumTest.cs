@@ -1,12 +1,12 @@
 ﻿using Albite.Test;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
-namespace Albite.Serialization.Test
+namespace Albite.Serialization.Test.WindowsPhone
 {
     [TestClass]
-    public class SerializerEnumTestWP : UnitTest
+    public class SerializerEnumTest : UnitTest
     {
-        private readonly SerializerEnumTest _test = new SerializerEnumTest();
+        private readonly Test.SerializerEnumTest _test = new Test.SerializerEnumTest();
 
         [TestMethod]
         public void TestEnum()

@@ -7,7 +7,7 @@
     <ProjectGuid>{6E38746D-F2E5-4565-A939-A6C3331B1C1D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Albite.Serialization.Test</RootNamespace>
+    <RootNamespace>Albite.Serialization.Test.WindowsPhone</RootNamespace>
     <AssemblyName>Albite.Serialization.Test.WindowsPhone</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformVersion>8.1</TargetPlatformVersion>

@@ -1,12 +1,12 @@
 ﻿using Albite.Test;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
-namespace Albite.Serialization.Test
+namespace Albite.Serialization.Test.WindowsPhone
 {
     [TestClass]
-    public class SerializerPrimitivesTestWP : UnitTest
+    public class SerializerPrimitivesTest : UnitTest
     {
-        private readonly SerializerPrimitivesTest _test = new SerializerPrimitivesTest();
+        private readonly Test.SerializerPrimitivesTest _test = new Test.SerializerPrimitivesTest();
 
         [TestMethod]
         public void TestPrimitives()

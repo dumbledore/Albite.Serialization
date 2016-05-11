@@ -1,12 +1,12 @@
 ﻿using Albite.Test;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
-namespace Albite.Serialization.Test
+namespace Albite.Serialization.Test.Windows
 {
     [TestClass]
-    public class SerializerObjectsTestW : UnitTest
+    public class SerializerObjectsTest : UnitTest
     {
-        private readonly SerializerObjectsTest _test = new SerializerObjectsTest();
+        private readonly Test.SerializerObjectsTest _test = new Test.SerializerObjectsTest();
 
         [TestMethod]
         public void SerializeObjects()
