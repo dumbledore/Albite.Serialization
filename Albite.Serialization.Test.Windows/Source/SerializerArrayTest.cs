@@ -1,4 +1,4 @@
-﻿using Albite.Core.Test;
+﻿using Albite.Test;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
 namespace Albite.Serialization.Test

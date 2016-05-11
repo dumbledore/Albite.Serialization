@@ -1,4 +1,4 @@
-﻿using Albite.Core.Reflection;
+﻿using Albite.Reflection;
 using Albite.Serialization.Internal.Helpers;
 using System;
 using System.Reflection;

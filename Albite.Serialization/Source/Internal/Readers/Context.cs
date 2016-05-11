@@ -1,5 +1,5 @@
-﻿using Albite.Core.Diagnostics;
-using Albite.Core.IO;
+﻿using Albite.Diagnostics;
+using Albite.IO;
 using System;
 using System.IO;
 

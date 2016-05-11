@@ -1,4 +1,4 @@
-﻿using Albite.Core.Diagnostics;
+﻿using Albite.Diagnostics;
 using Albite.Serialization.Internal.Readers;
 using System.IO;
 using System.Text;

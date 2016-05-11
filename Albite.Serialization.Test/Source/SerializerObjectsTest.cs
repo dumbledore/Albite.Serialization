@@ -1,4 +1,4 @@
-﻿using Albite.Core.Test;
+﻿using Albite.Test;
 using System;
 using System.Collections.Generic;
 

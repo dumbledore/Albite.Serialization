@@ -1,4 +1,4 @@
-﻿using Albite.Core.Diagnostics;
+﻿using Albite.Diagnostics;
 using System;
 using System.Reflection;
 

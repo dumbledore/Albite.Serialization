@@ -1,4 +1,4 @@
-﻿using Albite.Core.Reflection;
+﻿using Albite.Reflection;
 using System;
 using System.Reflection;
 

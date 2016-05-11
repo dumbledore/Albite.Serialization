@@ -1,5 +1,4 @@
-﻿using Albite.Core.IO;
-using System;
+﻿using System;
 
 namespace Albite.Serialization.Internal.Writers
 {

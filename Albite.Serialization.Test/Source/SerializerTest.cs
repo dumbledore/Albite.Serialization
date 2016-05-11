@@ -1,7 +1,6 @@
-﻿using Albite.Core;
-using Albite.Core.Collections;
-using Albite.Core.Diagnostics;
-using Albite.Core.Reflection;
+﻿using Albite.Collections;
+using Albite.Diagnostics;
+using Albite.Reflection;
 using System;
 using System.Collections;
 using System.Collections.Generic;
