@@ -1,6 +1,7 @@
 ﻿using Albite.Collections;
 using Albite.Diagnostics;
 using Albite.Reflection;
+using Albite.Serialization.Internal;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -80,9 +81,6 @@ namespace Albite.Serialization.Test
                 public Exception() { }
                 public Exception(string message) : base(message) { }
             }
-
-            // Cache the info for SerializedAttribute
-            private static readonly TypeInfo _info = typeof(SerializedAttribute).GetTypeInfo();
 
             // Objects Cache
             private readonly Dictionary<object, object> _cache
@@ -271,14 +269,14 @@ namespace Albite.Serialization.Test
                 TypeInfo info = type.GetTypeInfo();
 
                 // We already know that both objects have the same type
-                IMemberValue[] members = getMembers(info);
+                List<IMemberValue> members = info.GetSerializedMembers().ToList();
 
                 Logger.LogMessage("Comparing objects of class `{0}`", type.Name);
 
                 foreach (var m in members)
                 {
                     Logger.LogMessage("Comparing member `{0}` of type `{1}` for class `{2}`",
-                        m.Name, m.MemberType.Name, type.Name);
+                        m.Info.Name, m.MemberType.Name, type.Name);
 
                     object value1 = m.GetValue(o1);
                     object value2 = m.GetValue(o2);
@@ -290,15 +288,6 @@ namespace Albite.Serialization.Test
                 {
                     verifyClass(parent, o1, o2);
                 }
-            }
-
-            private static IMemberValue[] getMembers(TypeInfo info)
-            {
-                return info.GetMembers((memberType, memberInfo) =>
-                {
-                    return memberInfo.CustomAttributes.Any(
-                        a => _info.IsAssignableFrom(a.AttributeType.GetTypeInfo()));
-                });
             }
         }
     }

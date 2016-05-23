@@ -1,5 +1,4 @@
 ﻿using Albite.Reflection;
-using Albite.Serialization.Internal.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -76,7 +75,7 @@ namespace Albite.Serialization.Internal.Readers
         private static MemberSerializer[] createMembers(IContext context, TypeInfo info)
         {
             // Obtain all available members
-            IMemberValue[] members = info.GetSerializedMembers();
+            IEnumerable<IMemberValue> members = info.GetSerializedMembers();
 
             // Read how many members have been serialized
             int membersCount = context.Reader.ReadInt32();
@@ -87,7 +86,7 @@ namespace Albite.Serialization.Internal.Readers
             // Also, if the member type doesn't match the one of the
             // serializer, FieldInfo.SetValue() and PropertyInfo.SetValue()
             // would throw an ArgumentException
-            if (members.Length != membersCount)
+            if (members.Count() != membersCount)
             {
                 throw new InvalidOperationException(string.Format(
                     "Class members of type {0} are different than what was serialized",
@@ -99,7 +98,7 @@ namespace Albite.Serialization.Internal.Readers
             for (int i = 0; i < membersCount; i++)
             {
                 string name = context.Reader.ReadString();
-                IMemberValue m = members.First(member => member.Name == name);
+                IMemberValue m = members.First(member => member.Info.Name == name);
                 ISerializer s = context.CreateSerializer();
                 serializers[i] = new MemberSerializer(s, m);
             }

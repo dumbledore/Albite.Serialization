@@ -1,6 +1,7 @@
 ﻿using Albite.Reflection;
-using Albite.Serialization.Internal.Helpers;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace Albite.Serialization.Internal.Writers
@@ -39,26 +40,25 @@ namespace Albite.Serialization.Internal.Writers
         private static MemberSerializer[] createMembers(IContext context, TypeInfo info)
         {
             // Get the serializers for the type's members
-            IMemberValue[] members = info.GetSerializedMembers();
+            IEnumerable<IMemberValue> members = info.GetSerializedMembers();
 
             // Now Create the member serializers
-            MemberSerializer[] serializers = new MemberSerializer[members.Length];
+            MemberSerializer[] serializers = new MemberSerializer[members.Count()];
 
             // And write how many members we have
-            context.Writer.Write(members.Length);
+            context.Writer.Write(serializers.Length);
 
-            for (int i = 0; i < serializers.Length; i++)
+            int i = 0;
+            foreach (var m in members)
             {
-                IMemberValue m = members[i];
-
                 // Write the name of the member
-                context.Writer.Write(m.Name);
+                context.Writer.Write(m.Info.Name);
 
                 // Now this will create the serializer and
                 // write its signature
                 ISerializer s = context.CreateProxy(m.MemberType);
 
-                serializers[i] = new MemberSerializer(s, m);
+                serializers[i++] = new MemberSerializer(s, m);
             }
 
             return serializers;
