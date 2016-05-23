@@ -73,5 +73,11 @@ namespace Albite.Serialization.Test.Windows
         {
             _test.ClassWithIndexerTest();
         }
+
+        [TestMethod]
+        public void ClassWithReadOnlyWriteOnlyPropertiesTest()
+        {
+            _test.ClassWithReadOnlyWriteOnlyPropertiesTest();
+        }
     }
 }

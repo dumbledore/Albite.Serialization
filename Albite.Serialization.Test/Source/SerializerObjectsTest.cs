@@ -485,5 +485,33 @@ namespace Albite.Serialization.Test
             // this should pass as the indexer would not have been serialized!
             test(c);
         }
+
+        private class ClassWithROWO
+        {
+            [Serialized]
+            public int ReadOnlyProperty { get { return -1; } }
+
+            [Serialized]
+            public int WriteOnlyProperty { set { } }
+
+            [Serialized]
+            public int NormalProperty { get; private set; }
+
+            private ClassWithROWO() { }
+
+            public ClassWithROWO(int x)
+            {
+                NormalProperty = x;
+            }
+        }
+
+        public void ClassWithReadOnlyWriteOnlyPropertiesTest()
+        {
+            ClassWithROWO c = new ClassWithROWO(10);
+
+            // This should pass as only the normal property
+            // should have been serialized.
+            test(c);
+        }
     }
 }
