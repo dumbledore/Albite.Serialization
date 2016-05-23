@@ -453,6 +453,7 @@ namespace Albite.Serialization.Test
 
         private class ClassWithIndexer
         {
+            [Serialized]
             string[] _arr;
 
             private ClassWithIndexer() { }
@@ -462,6 +463,7 @@ namespace Albite.Serialization.Test
                 _arr = new string[size];
             }
 
+            [Serialized]
             public string this[int index]
             {
                 get
@@ -482,7 +484,8 @@ namespace Albite.Serialization.Test
             c[0]="Hello";
             c[1]="there!";
 
-            // this should pass as the indexer would not have been serialized!
+            // this should pass as the indexer would not have been serialized
+            // even though the serialized attribute was mistakenly put
             test(c);
         }
 
