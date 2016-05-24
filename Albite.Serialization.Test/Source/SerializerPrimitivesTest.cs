@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Albite.Test;
+using System;
 
 namespace Albite.Serialization.Test
 {
@@ -73,7 +74,8 @@ namespace Albite.Serialization.Test
                 new Guid(Int32.MaxValue,Int16.MaxValue,Int16.MinValue,1,2,3,4,5,6,Byte.MinValue,Byte.MaxValue),
             };
 
-            test(values);
+            object[] valuesRead = test(values);
+            CollectionAssert.AreEqual(values, valuesRead);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Albite.Test;
+using System.Collections.Generic;
 
 namespace Albite.Serialization.Test
 {
@@ -17,42 +18,49 @@ namespace Albite.Serialization.Test
         {
             List<E> list = new List<E>();
             foreach (var e in Sample) list.Add(e);
-            test(list);
+            testCollection(list);
         }
 
         public void LinkedListTest()
         {
             LinkedList<E> list = new LinkedList<E>();
             foreach (var e in Sample) list.AddLast(e);
-            test(list);
+            testCollection(list);
         }
 
         public void StackTest()
         {
             Stack<E> stack = new Stack<E>();
             foreach (var e in Sample) stack.Push(e);
-            test(stack);
+            testCollection(stack);
         }
 
         public void QueueTest()
         {
             List<E> queue = new List<E>();
             foreach (var e in Sample) queue.Add(e);
-            test(queue);
+            testCollection(queue);
         }
 
         public void HashSetTest()
         {
             HashSet<E> set = new HashSet<E>();
             foreach (var e in Sample) set.Add(e);
-            test(set);
+            testCollection(set);
         }
 
         public void SortedSetTest()
         {
             SortedSet<E> set = new SortedSet<E>();
             foreach (var e in Sample) set.Add(e);
-            test(set);
+            testCollection(set);
+        }
+
+        private void testCollection(IEnumerable<E> collection)
+        {
+            List<E> values = new List<E>(collection);
+            List<E> valuesRead = new List<E>((IEnumerable<E>)test(collection));
+            CollectionAssert.AreEqual(values, valuesRead);
         }
     }
 }

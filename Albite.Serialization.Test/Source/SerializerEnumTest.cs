@@ -1,4 +1,6 @@
-﻿namespace Albite.Serialization.Test
+﻿using Albite.Test;
+
+namespace Albite.Serialization.Test
 {
     public class SerializerEnumTest : SerializerTest
     {
@@ -40,7 +42,8 @@
                 (MyEnum)17,
             };
 
-            test(values);
+            object[] valuesRead = test(values);
+            CollectionAssert.AreEqual(values, valuesRead);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Albite.Test;
+using System;
 
 namespace Albite.Serialization.Test
 {
@@ -29,7 +30,8 @@ namespace Albite.Serialization.Test
                 "".GetType(),
             };
 
-            test(values);
+            object[] valuesRead = test(values);
+            CollectionAssert.AreEqual(values, valuesRead);
         }
     }
 }
