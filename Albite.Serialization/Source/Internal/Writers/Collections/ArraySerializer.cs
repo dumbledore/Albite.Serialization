@@ -2,7 +2,7 @@
 
 namespace Albite.Serialization.Internal.Writers.Collections
 {
-    internal class ArraySerializer : CollectionSerializer
+    class ArraySerializer : CollectionSerializer
     {
         private ArraySerializer() { }
 

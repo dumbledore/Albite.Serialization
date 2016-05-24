@@ -2,7 +2,7 @@
 
 namespace Albite.Serialization.Internal.Writers
 {
-    internal abstract class ObjectSerializer : IInitiailzableSerializer
+    abstract class ObjectSerializer : IInitiailzableSerializer
     {
         public abstract void LateInitialize(IContext context, Type type);
 

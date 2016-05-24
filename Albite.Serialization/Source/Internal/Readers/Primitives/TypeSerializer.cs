@@ -1,6 +1,6 @@
 ﻿namespace Albite.Serialization.Internal.Readers.Primitives
 {
-    internal class TypeSerializer : IInitiailzableSerializer
+    class TypeSerializer : IInitiailzableSerializer
     {
         private TypeSerializer() { }
 

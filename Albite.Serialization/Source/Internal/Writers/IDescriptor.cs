@@ -2,7 +2,7 @@
 
 namespace Albite.Serialization.Internal.Writers
 {
-    internal interface IDescriptor
+    interface IDescriptor
     {
         bool IsTypeSupported(Type type);
         SerializedType SerializedType { get; }

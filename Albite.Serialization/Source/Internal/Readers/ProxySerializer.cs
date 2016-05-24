@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Albite.Serialization.Internal.Readers
 {
-    internal class ProxySerializer : IInitiailzableSerializer
+    class ProxySerializer : IInitiailzableSerializer
     {
 #if DEBUG
         private TypeInfo _info;

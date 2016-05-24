@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace Albite.Serialization.Internal.Readers.Collections
 {
-    internal class CollectionSerializer : ObjectSerializer
+    class CollectionSerializer : ObjectSerializer
     {
         private readonly Type _collectionType;
         private readonly string _adderName;

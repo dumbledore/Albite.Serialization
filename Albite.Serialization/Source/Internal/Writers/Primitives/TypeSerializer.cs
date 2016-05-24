@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace Albite.Serialization.Internal.Writers.Primitives
 {
-    internal class TypeSerializer : IInitiailzableSerializer
+    class TypeSerializer : IInitiailzableSerializer
     {
         private TypeSerializer() { }
 

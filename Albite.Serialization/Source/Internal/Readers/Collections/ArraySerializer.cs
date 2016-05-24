@@ -2,7 +2,7 @@
 
 namespace Albite.Serialization.Internal.Readers.Collections
 {
-    internal class ArraySerializer : ObjectSerializer
+    class ArraySerializer : ObjectSerializer
     {
         private Type _type;
         private ISerializer _nested;

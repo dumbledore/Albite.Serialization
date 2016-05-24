@@ -4,7 +4,7 @@ using System.IO;
 
 namespace Albite.Serialization.Internal.Readers.Primitives
 {
-    internal class PrimitiveSerializer : IInitiailzableSerializer
+    class PrimitiveSerializer : IInitiailzableSerializer
     {
         private TypeCode _code;
 

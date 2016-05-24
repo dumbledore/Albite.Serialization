@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace Albite.Serialization.Internal.Readers
 {
-    internal class ClassSerializer : ObjectSerializer
+    class ClassSerializer : ObjectSerializer
     {
         private ConstructorInfo _ctr;
         private MemberSerializer[] _members;

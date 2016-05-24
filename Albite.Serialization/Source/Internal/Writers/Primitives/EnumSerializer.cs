@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace Albite.Serialization.Internal.Writers.Primitives
 {
-    internal class EnumSerializer : IInitiailzableSerializer
+    class EnumSerializer : IInitiailzableSerializer
     {
         // Note that enums are value types and behave like integers,
         // and therefore they should not be treated like references,

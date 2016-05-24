@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Albite.Serialization.Internal.Readers
 {
-    internal static class Descriptors
+    static class Descriptors
     {
         public static readonly IDescriptor[] Values;
         public static readonly IDictionary<SerializedType, IDescriptor> Associations;

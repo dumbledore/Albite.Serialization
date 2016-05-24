@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace Albite.Serialization.Internal.Writers.Collections
 {
-    internal class CollectionSerializer : ObjectSerializer
+    class CollectionSerializer : ObjectSerializer
     {
         private readonly bool _reverse;
 

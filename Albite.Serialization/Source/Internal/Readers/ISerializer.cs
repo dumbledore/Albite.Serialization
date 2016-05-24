@@ -1,6 +1,6 @@
 ﻿namespace Albite.Serialization.Internal.Readers
 {
-    internal interface ISerializer
+    interface ISerializer
     {
         object Read(IContext context);
     }

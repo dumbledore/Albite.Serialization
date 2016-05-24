@@ -9,7 +9,7 @@ namespace Albite.Serialization.Internal.Writers
     /// and making sure each one has a unique ID.
     /// </summary>
 #endif
-    internal class SerializerCache
+    class SerializerCache
     {
         private readonly Dictionary<Type, KeyValuePair<ISerializer, uint>> _cache
             = new Dictionary<Type, KeyValuePair<ISerializer, uint>>();

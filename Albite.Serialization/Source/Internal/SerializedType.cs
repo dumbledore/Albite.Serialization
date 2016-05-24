@@ -1,6 +1,6 @@
 ﻿namespace Albite.Serialization.Internal
 {
-    internal enum SerializedType
+    enum SerializedType
     {
         Null,
         Cached, // An already serialized definition of a serializer

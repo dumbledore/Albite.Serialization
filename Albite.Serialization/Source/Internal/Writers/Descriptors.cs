@@ -3,7 +3,7 @@ using Albite.Serialization.Internal.Writers.Primitives;
 
 namespace Albite.Serialization.Internal.Writers
 {
-    internal static class Descriptors
+    static class Descriptors
     {
         // It's capital that the serializers are traversed in this order
         public static readonly IDescriptor[] Values =

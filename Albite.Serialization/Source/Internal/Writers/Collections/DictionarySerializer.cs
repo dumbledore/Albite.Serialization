@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Albite.Serialization.Internal.Writers.Collections
 {
-    internal class DictionarySerializer : CollectionSerializer
+    class DictionarySerializer : CollectionSerializer
     {
         private DictionarySerializer() { }
 

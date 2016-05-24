@@ -1,6 +1,6 @@
 ﻿namespace Albite.Serialization.Internal.Writers
 {
-    internal interface ISerializer
+    interface ISerializer
     {
         void Write(IContext context, object value);
     }

@@ -8,7 +8,7 @@ namespace Albite.Serialization.Internal.Writers
     // an interface, e.g. we are serializing an array of interfaces.
     // The type for ProxySerializer will be an interface,
     // but when writing to it, we'll have a concrete type
-    internal class ProxySerializer : IInitiailzableSerializer
+    class ProxySerializer : IInitiailzableSerializer
     {
 #if DEBUG
         private TypeInfo _info;

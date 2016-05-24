@@ -8,7 +8,7 @@ namespace Albite.Serialization.Internal.Writers
     /// </summary>
     /// <typeparam name="T">The type being cached</typeparam>
 #endif
-    internal class ObjectCache<T>
+    class ObjectCache<T>
     {
         private readonly Dictionary<T, uint> _cache;
 

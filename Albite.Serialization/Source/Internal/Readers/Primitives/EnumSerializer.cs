@@ -3,7 +3,7 @@ using System;
 
 namespace Albite.Serialization.Internal.Readers.Primitives
 {
-    internal class EnumSerializer : IInitiailzableSerializer
+    class EnumSerializer : IInitiailzableSerializer
     {
         private Type _enumType;
 

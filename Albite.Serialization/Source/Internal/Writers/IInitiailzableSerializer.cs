@@ -2,7 +2,7 @@
 
 namespace Albite.Serialization.Internal.Writers
 {
-    internal interface IInitiailzableSerializer : ISerializer
+    interface IInitiailzableSerializer : ISerializer
     {
         // We don't want to export this out of IContext
         // The idea of LateInitailize is to call it after

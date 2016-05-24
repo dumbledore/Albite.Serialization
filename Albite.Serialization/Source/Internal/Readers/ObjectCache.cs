@@ -2,7 +2,7 @@
 
 namespace Albite.Serialization.Internal.Readers
 {
-    internal class ObjectCache<T>
+    class ObjectCache<T>
     {
         private readonly Dictionary<uint, T> _cache = new Dictionary<uint, T>();
         private uint _currentId = 1;

@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace Albite.Serialization.Internal.Writers
 {
-    internal class Context : ContextBase, IContext
+    class Context : ContextBase, IContext
     {
         public BinaryWriter Writer { get; private set; }
         public override Version Version { get { return _version; } }

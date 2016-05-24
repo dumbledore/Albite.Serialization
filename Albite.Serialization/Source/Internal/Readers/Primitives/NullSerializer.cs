@@ -1,6 +1,6 @@
 ﻿namespace Albite.Serialization.Internal.Readers.Primitives
 {
-    internal class NullSerializer : IInitiailzableSerializer
+    class NullSerializer : IInitiailzableSerializer
     {
         private NullSerializer() { }
 

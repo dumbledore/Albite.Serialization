@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Albite.Serialization.Internal.Readers
 {
-    internal interface IContext : IContextBase
+    interface IContext : IContextBase
     {
 #if DEBUG
         /// <summary>

@@ -5,7 +5,7 @@ using System.IO;
 
 namespace Albite.Serialization.Internal.Readers
 {
-    internal class Context : ContextBase, IContext
+    class Context : ContextBase, IContext
     {
         public BinaryReader Reader { get; private set; }
         public override Version Version { get { return _version; } }

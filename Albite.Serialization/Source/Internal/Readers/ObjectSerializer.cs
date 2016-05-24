@@ -1,6 +1,6 @@
 ﻿namespace Albite.Serialization.Internal.Readers
 {
-    internal abstract class ObjectSerializer : IInitiailzableSerializer
+    abstract class ObjectSerializer : IInitiailzableSerializer
     {
         public abstract void LateInitialize(IContext context);
 
