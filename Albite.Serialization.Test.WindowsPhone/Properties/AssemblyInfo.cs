@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Albite.Serialization.Test")]
+[assembly: AssemblyTitle("Albite.Serialization.Test.WindowsPhone")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Albite.Serialization.Test")]
+[assembly: AssemblyProduct("Albite.Serialization.Test.WindowsPhone")]
 [assembly: AssemblyCopyright("Copyright © Svetlin Ankov 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
