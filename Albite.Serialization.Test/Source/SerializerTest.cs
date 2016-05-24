@@ -14,28 +14,33 @@ namespace Albite.Serialization.Test
 {
     public abstract class SerializerTest
     {
-        protected static void test(object value)
+        protected static void test(object value, Type attributeType = null)
         {
-            test(new object[] { value });
+            test(new object[] { value }, attributeType);
         }
 
-        protected static void test(object[] values)
+        protected static void test(object[] values, Type attributeType = null)
         {
-            byte[] bytes = write(values);
-            object[] valuesRead = read(bytes, values.Length);
+            if (attributeType == null)
+            {
+                attributeType = typeof(SerializedAttribute);
+            }
 
-            EqualityVerifier verifier = new EqualityVerifier();
+            byte[] bytes = write(values, attributeType);
+            object[] valuesRead = read(bytes, values.Length, attributeType);
+
+            EqualityVerifier verifier = new EqualityVerifier(attributeType);
             for (int i = 0; i < values.Length; i++)
             {
                 verifier.Verify(values[i], valuesRead[i]);
             }
         }
 
-        private static byte[] write(object[] values)
+        private static byte[] write(object[] values, Type attributeType)
         {
             using (MemoryStream stream = new MemoryStream())
             {
-                using (ObjectWriter writer = new ObjectWriter(stream, Encoding.UTF8, true))
+                using (ObjectWriter writer = new ObjectWriter(stream, Encoding.UTF8, true, attributeType))
                 {
                     foreach (var value in values)
                     {
@@ -53,13 +58,13 @@ namespace Albite.Serialization.Test
             }
         }
 
-        private static object[] read(byte[] data, int count)
+        private static object[] read(byte[] data, int count, Type attributeType)
         {
             object[] values = new object[count];
 
             using (MemoryStream stream = new MemoryStream(data))
             {
-                using (ObjectReader reader = new ObjectReader(stream, Encoding.UTF8, true))
+                using (ObjectReader reader = new ObjectReader(stream, Encoding.UTF8, true, attributeType))
                 {
                     for (int i = 0; i < count; i++)
                     {
@@ -76,7 +81,7 @@ namespace Albite.Serialization.Test
 
         private class EqualityVerifier
         {
-            public class Exception : System.Exception
+            private class Exception : System.Exception
             {
                 public Exception() { }
                 public Exception(string message) : base(message) { }
@@ -85,6 +90,13 @@ namespace Albite.Serialization.Test
             // Objects Cache
             private readonly Dictionary<object, object> _cache
                 = new Dictionary<object, object>(new IdentityEqualityComparer<object>());
+
+            private Type _attributeType;
+
+            public EqualityVerifier(Type attributeType)
+            {
+                _attributeType = attributeType;
+            }
 
             public void Verify(object value, object valueRead)
             {
@@ -269,7 +281,8 @@ namespace Albite.Serialization.Test
                 TypeInfo info = type.GetTypeInfo();
 
                 // We already know that both objects have the same type
-                List<IMemberValue> members = info.GetSerializedMembers().ToList();
+                List<IMemberValue> members =
+                    ContextBase.GetSerializedMembers(info, _attributeType).ToList();
 
                 Logger.LogMessage("Comparing objects of class `{0}`", type.Name);
 

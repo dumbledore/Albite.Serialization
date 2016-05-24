@@ -1,5 +1,6 @@
 ﻿using Albite.Diagnostics;
 using Albite.Serialization.Internal.Readers;
+using System;
 using System.IO;
 using System.Text;
 
@@ -15,6 +16,7 @@ namespace Albite.Serialization
         /// <summary>
         /// Initializes a new instance of the <c>Albite.Serialization.ObjectWriter</c>
         /// class based on the specified stream and using UTF-8 encoding.
+        /// It will use SerializedAttribute for serializing class members.
         /// </summary>
         /// <param name="input">The input stream.</param>
         /// <exception cref="System.ArgumentException">
@@ -29,6 +31,7 @@ namespace Albite.Serialization
         /// <summary>
         /// Initializes a new instance of the <c>Albite.Serialization.ObjectWriter</c>
         /// class based on the specified stream and character encoding.
+        /// It will use SerializedAttribute for serializing class members.
         /// </summary>
         /// <param name="input">The input stream.</param>
         /// <param name="encoding">The character encoding to use.</param>
@@ -48,6 +51,7 @@ namespace Albite.Serialization
         /// Initializes a new instance of the <c>Albite.Serialization.ObjectWriter</c>
         /// class based on the specified stream and character encoding, and optionally
         /// leaves the stream open.
+        /// It will use SerializedAttribute for serializing class members.
         /// </summary>
         /// <param name="input">The input stream.</param>
         /// <param name="encoding">The character encoding to use.</param>
@@ -66,6 +70,33 @@ namespace Albite.Serialization
             : base(input, encoding, leaveOpen)
         {
             this._context = new Context(this);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <c>Albite.Serialization.ObjectWriter</c>
+        /// class based on the specified stream and character encoding, and optionally
+        /// leaves the stream open.
+        /// </summary>
+        /// <param name="input">The input stream.</param>
+        /// <param name="encoding">The character encoding to use.</param>
+        /// <param name="leaveOpen">
+        /// <c>true</c> to leave the stream open after the
+        /// <c>Albite.Serialization.ObjectWriter</c> object is disposed;
+        /// otherwise, <c>false</c>.
+        /// </param>
+        /// <param name="attributeType">
+        /// The type of the attribute used for serializing members.
+        /// </param>
+        /// <exception cref="System.ArgumentException">
+        /// The stream does not support reading, is <c>null</c>, or is already closed.
+        /// </exception>
+        /// <exception cref="System.ArgumentNullException">
+        /// <c>encoding</c>, <c>input</c> or <c>attributeType</c> is <c>null</c>.
+        /// </exception>
+        public ObjectReader(Stream input, Encoding encoding, bool leaveOpen, Type attributeType)
+            : base(input, encoding, leaveOpen)
+        {
+            this._context = new Context(this, attributeType);
         }
 
         /// <summary>

@@ -40,7 +40,7 @@ namespace Albite.Serialization.Internal.Writers
         private static MemberSerializer[] createMembers(IContext context, TypeInfo info)
         {
             // Get the serializers for the type's members
-            IEnumerable<IMemberValue> members = info.GetSerializedMembers();
+            IEnumerable<IMemberValue> members = context.GetSerializedMembers(info);
 
             // Now Create the member serializers
             MemberSerializer[] serializers = new MemberSerializer[members.Count()];

@@ -3,26 +3,35 @@ using Albite.Diagnostics;
 using Albite.IO;
 using System;
 using System.IO;
+using System.Reflection;
 
 namespace Albite.Serialization.Internal.Writers
 {
-    internal class Context : IContext
+    internal class Context : ContextBase, IContext
     {
         public BinaryWriter Writer { get; private set; }
+        public override Version Version { get { return _version; } }
 
         private readonly SerializerCache _serializers = new SerializerCache();
         private readonly SerializerCache _proxies = new SerializerCache();
         private readonly ObjectCache<object> _objects = new ObjectCache<object>(new IdentityEqualityComparer<object>());
         private readonly ObjectCache<Type> _types = new ObjectCache<Type>();
+        private readonly Version _version;
 
         public Context(BinaryWriter writer)
+            : this(writer, typeof(SerializedAttribute))
+        {
+        }
+
+        public Context(BinaryWriter writer, Type attributeType)
+            : base(attributeType)
         {
             this.Writer = writer;
-
+            this._version = GetType().GetTypeInfo().Assembly.GetName().Version;
 #if DEBUG
-            Logger.LogMessage("New Writers.Context. Version={0}", Version.Current);
+            Logger.LogMessage("New Writers.Context. Version={0}", Version);
 #endif
-            writer.Write(Version.Current);
+            writer.Write(Version.ToString());
         }
 
         public ISerializer CreateSerializer(Type type)

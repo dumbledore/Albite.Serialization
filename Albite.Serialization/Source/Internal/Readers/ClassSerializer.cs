@@ -75,7 +75,7 @@ namespace Albite.Serialization.Internal.Readers
         private static MemberSerializer[] createMembers(IContext context, TypeInfo info)
         {
             // Obtain all available members
-            IEnumerable<IMemberValue> members = info.GetSerializedMembers();
+            IEnumerable<IMemberValue> members = context.GetSerializedMembers(info);
 
             // Read how many members have been serialized
             int membersCount = context.Reader.ReadInt32();

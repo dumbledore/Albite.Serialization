@@ -5,25 +5,31 @@ using System.IO;
 
 namespace Albite.Serialization.Internal.Readers
 {
-    internal class Context : IContext
+    internal class Context : ContextBase, IContext
     {
         public BinaryReader Reader { get; private set; }
-        public int Version { get; private set; }
+        public override Version Version { get { return _version; } }
 
         private readonly SerializerCache _serializers = new SerializerCache();
         private readonly SerializerCache _proxies = new SerializerCache();
         private readonly ObjectCache<object> _objects = new ObjectCache<object>();
         private readonly ObjectCache<Type> _types = new ObjectCache<Type>();
+        private readonly Version _version;
 
         public Context(BinaryReader reader)
+            : this(reader, typeof(SerializedAttribute))
         {
-            int version = reader.ReadInt32();
+        }
+
+        public Context(BinaryReader reader, Type attributeType)
+            : base(attributeType)
+        {
+            this._version = Version.Parse(reader.ReadString());
 
 #if DEBUG
-            Logger.LogMessage("New Readers.Context. Version={0}", version);
+            Logger.LogMessage("New Readers.Context. Version={0}", Version.ToString());
 #endif
             this.Reader = reader;
-            this.Version = version;
         }
 
         public ISerializer CreateSerializer()

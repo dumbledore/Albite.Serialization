@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Albite.Serialization.Internal.Readers
 {
-    internal interface IContext
+    internal interface IContext : IContextBase
     {
 #if DEBUG
         /// <summary>
@@ -33,13 +33,6 @@ namespace Albite.Serialization.Internal.Readers
         /// </summary>
 #endif
         ObjectCache<object> ObjectCache { get; }
-
-#if DEBUG
-        /// <summary>
-        /// Retrieves the version of the serializer
-        /// </summary>
-#endif
-        int Version { get; }
 
 #if DEBUG
         /// <summary>

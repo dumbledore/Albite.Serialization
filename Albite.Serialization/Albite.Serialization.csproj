@@ -42,7 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Source\Internal\TypeInfoExtensions.cs" />
+    <Compile Include="Source\Internal\ContextBase.cs" />
+    <Compile Include="Source\Internal\IContextBase.cs" />
     <Compile Include="Source\Internal\Readers\ObjectCache.cs" />
     <Compile Include="Source\Internal\Readers\Descriptors.cs" />
     <Compile Include="Source\Internal\Readers\IDescriptor.cs" />
@@ -50,7 +51,6 @@
     <Compile Include="Source\Internal\Readers\Primitives\NullSerializer.cs" />
     <Compile Include="Source\Internal\Readers\SerializerCache.cs" />
     <Compile Include="Source\Internal\SerializedType.cs" />
-    <Compile Include="Source\Internal\Version.cs" />
     <Compile Include="Source\Internal\Writers\Collections\DictionarySerializer.cs" />
     <Compile Include="Source\Internal\Writers\Descriptors.cs" />
     <Compile Include="Source\Internal\Writers\IInitiailzableSerializer.cs" />

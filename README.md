@@ -90,7 +90,8 @@ One would get:
     Assert.AreEqual(1000, c.I);
     Assert.AreEqual("hello", c.S);
 
-Finally, instead of the `Serialized` attribute, one can use an attribute inheriting from `Serialized`. This may not look apparently useful, but it may be needed for more advanced cases, e.g. an attribute for a column in a database that is backed up by the serializer.
+Finally, instead of the `Serialized` attribute, one can use a custom one. One needs to pass it as the last argument of the full constructor.
+This may not look apparently useful, but it may be needed for more advanced cases, e.g. an attribute for a column in a database that is backed up by the serializer.
 
 ### Full list of serialized types
 

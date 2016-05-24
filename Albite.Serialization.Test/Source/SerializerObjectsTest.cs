@@ -123,7 +123,8 @@ namespace Albite.Serialization.Test
             test(r3);
         }
 
-        private class CustomSerializedAttribute : SerializedAttribute { }
+        [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
+        private class CustomSerializedAttribute : Attribute { }
 
         private class CA
         {
@@ -141,7 +142,7 @@ namespace Albite.Serialization.Test
         public void SerializeCustomAttributes()
         {
             CA s = new CA(13);
-            test(s);
+            test(s, typeof(CustomSerializedAttribute));
         }
 
         private struct S { }
