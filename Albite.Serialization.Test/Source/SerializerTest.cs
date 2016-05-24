@@ -14,12 +14,12 @@ namespace Albite.Serialization.Test
 {
     public abstract class SerializerTest
     {
-        protected static void test(object value, Type attributeType = null)
+        protected static object test(object value, Type attributeType = null)
         {
-            test(new object[] { value }, attributeType);
+            return test(new object[] { value }, attributeType)[0];
         }
 
-        protected static void test(object[] values, Type attributeType = null)
+        protected static object[] test(object[] values, Type attributeType = null)
         {
             if (attributeType == null)
             {
@@ -34,6 +34,8 @@ namespace Albite.Serialization.Test
             {
                 verifier.Verify(values[i], valuesRead[i]);
             }
+
+            return valuesRead;
         }
 
         private static byte[] write(object[] values, Type attributeType)
