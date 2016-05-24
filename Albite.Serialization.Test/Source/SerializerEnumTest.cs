@@ -2,7 +2,7 @@
 
 namespace Albite.Serialization.Test
 {
-    public class SerializerEnumTest : SerializerTest
+    public class SerializerEnumTest
     {
         private enum E
         {
@@ -42,7 +42,7 @@ namespace Albite.Serialization.Test
                 (MyEnum)17,
             };
 
-            object[] valuesRead = test(values);
+            object[] valuesRead = Helper.Test(values);
             CollectionAssert.AreEqual(values, valuesRead);
         }
     }

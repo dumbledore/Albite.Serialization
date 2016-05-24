@@ -3,7 +3,7 @@ using System;
 
 namespace Albite.Serialization.Test
 {
-    public class SerializerTypeTest : SerializerTest
+    public class SerializerTypeTest
     {
         private interface I { }
         private abstract class A : I { }
@@ -30,7 +30,7 @@ namespace Albite.Serialization.Test
                 "".GetType(),
             };
 
-            object[] valuesRead = test(values);
+            object[] valuesRead = Helper.Test(values);
             CollectionAssert.AreEqual(values, valuesRead);
         }
     }

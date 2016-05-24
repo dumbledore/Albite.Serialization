@@ -3,7 +3,7 @@ using System;
 
 namespace Albite.Serialization.Test
 {
-    public class SerializerPrimitivesTest : SerializerTest
+    public class SerializerPrimitivesTest
     {
         public void TestPrimitives()
         {
@@ -74,7 +74,7 @@ namespace Albite.Serialization.Test
                 new Guid(Int32.MaxValue,Int16.MaxValue,Int16.MinValue,1,2,3,4,5,6,Byte.MinValue,Byte.MaxValue),
             };
 
-            object[] valuesRead = test(values);
+            object[] valuesRead = Helper.Test(values);
             CollectionAssert.AreEqual(values, valuesRead);
         }
     }

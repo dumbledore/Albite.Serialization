@@ -50,13 +50,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Source\EqualityVerifier.cs" />
     <Compile Include="Source\SerializerArrayTest.cs" />
     <Compile Include="Source\SerializerCollectionTest.cs" />
     <Compile Include="Source\SerializerEnumTest.cs" />
     <Compile Include="Source\SerializerExampleTest.cs" />
     <Compile Include="Source\SerializerObjectsTest.cs" />
     <Compile Include="Source\SerializerPrimitivesTest.cs" />
-    <Compile Include="Source\SerializerTest.cs" />
+    <Compile Include="Source\Helper.cs" />
     <Compile Include="Source\SerializerTypeTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

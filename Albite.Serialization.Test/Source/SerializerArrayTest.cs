@@ -2,13 +2,13 @@
 
 namespace Albite.Serialization.Test
 {
-    public class SerializerArrayTest : SerializerTest
+    public class SerializerArrayTest
     {
         public void SerializeByteArray()
         {
             byte[] arr1 = new byte[] { 1, 4, 10 };
 
-            object[] valuesRead = test(new object[] {
+            object[] valuesRead = Helper.Test(new object[] {
                 arr1,
                 arr1,
                 (byte) 111,

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Albite.Serialization.Test
 {
-    public class SerializerObjectsTest : SerializerTest
+    public class SerializerObjectsTest
     {
         private interface I
         {
@@ -86,21 +86,21 @@ namespace Albite.Serialization.Test
             A[][] ar6 = new A[][] { ar2, ar3, };
             I[] ar7 = new I[] { a1, a2, a3 };
 
-            test(a1);
-            test(a2);
-            test(a3);
-            test(b1);
-            test(c1);
-            test(c2);
-            test(c3);
-            test(c4);
-            test(ar1);
-            test(ar2);
-            test(ar3);
-            test(ar4);
-            test(ar5);
-            test(ar6);
-            test(ar7);
+            Helper.Test(a1);
+            Helper.Test(a2);
+            Helper.Test(a3);
+            Helper.Test(b1);
+            Helper.Test(c1);
+            Helper.Test(c2);
+            Helper.Test(c3);
+            Helper.Test(c4);
+            Helper.Test(ar1);
+            Helper.Test(ar2);
+            Helper.Test(ar3);
+            Helper.Test(ar4);
+            Helper.Test(ar5);
+            Helper.Test(ar6);
+            Helper.Test(ar7);
         }
 
         private class R
@@ -112,15 +112,15 @@ namespace Albite.Serialization.Test
         public void SerializeRecursiveObjects()
         {
             R r1 = new R();
-            test(r1);
+            Helper.Test(r1);
 
             R r2 = new R();
             r2.Me = r1;
-            test(r2);
+            Helper.Test(r2);
 
             R r3 = new R();
             r3.Me = r3;
-            test(r3);
+            Helper.Test(r3);
         }
 
         [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
@@ -142,7 +142,7 @@ namespace Albite.Serialization.Test
         public void SerializeCustomAttributes()
         {
             CA s = new CA(13);
-            test(s, typeof(CustomSerializedAttribute));
+            Helper.Test(s, typeof(CustomSerializedAttribute));
         }
 
         private struct S { }
@@ -152,7 +152,7 @@ namespace Albite.Serialization.Test
             Assert.ThrowsException<NotSupportedException>(() =>
             {
                 S s;
-                test(s);
+                Helper.Test(s);
             });
         }
 
@@ -197,11 +197,11 @@ namespace Albite.Serialization.Test
             W w = new W();
             I[] i5 = { w, w, new W(), };
 
-            test((object)i1);
-            test((object)i2);
-            test((object)i3);
-            test((object)i4);
-            test((object)i5);
+            Helper.Test((object)i1);
+            Helper.Test((object)i2);
+            Helper.Test((object)i3);
+            Helper.Test((object)i4);
+            Helper.Test((object)i5);
         }
 
         private class G<T>
@@ -256,9 +256,9 @@ namespace Albite.Serialization.Test
             G<H> g2 = new G<H>(j1, 20);
             G<J> g3 = new G<J>(j1, 30);
 
-            test(g1);
-            test(g2);
-            test(g3);
+            Helper.Test(g1);
+            Helper.Test(g2);
+            Helper.Test(g3);
         }
 
         private class K : I
@@ -348,12 +348,12 @@ namespace Albite.Serialization.Test
             I[] arr1 = { k, l, m, n };
             K[] arr2 = { n, n, new N(1, 2, 3, 4), };
 
-            test(k);
-            test(l);
-            test(m);
-            test(n);
-            test((object)arr1);
-            test((object)arr2);
+            Helper.Test(k);
+            Helper.Test(l);
+            Helper.Test(m);
+            Helper.Test(n);
+            Helper.Test((object)arr1);
+            Helper.Test((object)arr2);
         }
 
         private class LA<T> : List<T>
@@ -389,8 +389,8 @@ namespace Albite.Serialization.Test
             x.AddRange(new string[] { "One", "Two", "Ten" });
 
             ICollection<string>[] arr = { x, x, new LB<string>(10, 20) };
-            test(x);
-            test((object)arr);
+            Helper.Test(x);
+            Helper.Test((object)arr);
         }
 
         public void NullObjectTest()
@@ -399,9 +399,9 @@ namespace Albite.Serialization.Test
             I i = null;
             A a = null;
 
-            test(o);
-            test(i);
-            test(a);
+            Helper.Test(o);
+            Helper.Test(i);
+            Helper.Test(a);
         }
 
         private abstract class AbstractClass : I
@@ -448,8 +448,8 @@ namespace Albite.Serialization.Test
         {
             AbstractClass a = new ConcreteClass(10, 20, 30);
             AbstractClass[] arr = new AbstractClass[] { a, a, new ConcreteClass(100, 200, 300), null };
-            test(a);
-            test((object)arr);
+            Helper.Test(a);
+            Helper.Test((object)arr);
         }
 
         private class ClassWithIndexer
@@ -487,7 +487,7 @@ namespace Albite.Serialization.Test
 
             // this should pass as the indexer would not have been serialized
             // even though the serialized attribute was mistakenly put
-            test(c);
+            Helper.Test(c);
         }
 
         private class ClassWithROWO
@@ -515,7 +515,7 @@ namespace Albite.Serialization.Test
 
             // This should pass as only the normal property
             // should have been serialized.
-            test(c);
+            Helper.Test(c);
         }
     }
 }

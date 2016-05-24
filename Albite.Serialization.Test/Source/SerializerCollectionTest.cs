@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Albite.Serialization.Test
 {
-    public class SerializerCollectionTest : SerializerTest
+    public class SerializerCollectionTest
     {
         private enum E
         {
@@ -59,7 +59,7 @@ namespace Albite.Serialization.Test
         private void testCollection(IEnumerable<E> collection)
         {
             List<E> values = new List<E>(collection);
-            List<E> valuesRead = new List<E>((IEnumerable<E>)test(collection));
+            List<E> valuesRead = new List<E>((IEnumerable<E>)Helper.Test(collection));
             CollectionAssert.AreEqual(values, valuesRead);
         }
     }
