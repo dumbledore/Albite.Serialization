@@ -52,13 +52,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Source\SerializerArrayTest.cs" />
-    <Compile Include="Source\SerializerCollectionTest.cs" />
-    <Compile Include="Source\SerializerEnumTest.cs" />
-    <Compile Include="Source\SerializerExampleTest.cs" />
-    <Compile Include="Source\SerializerObjectsTest.cs" />
-    <Compile Include="Source\SerializerPrimitivesTest.cs" />
-    <Compile Include="Source\SerializerTypeTest.cs" />
+    <Compile Include="Source\ArrayTest.cs" />
+    <Compile Include="Source\CollectionTest.cs" />
+    <Compile Include="Source\EnumTest.cs" />
+    <Compile Include="Source\ExampleTest.cs" />
+    <Compile Include="Source\ObjectsTest.cs" />
+    <Compile Include="Source\PrimitivesTest.cs" />
+    <Compile Include="Source\TypeTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

@@ -4,14 +4,14 @@ using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 namespace Albite.Serialization.Test.Windows
 {
     [TestClass]
-    public class SerializerTypeTest : UnitTest
+    public class SerializerEnumTest : UnitTest
     {
-        private readonly Test.SerializerTypeTest _test = new Test.SerializerTypeTest();
+        private readonly Test.EnumTest _test = new Test.EnumTest();
 
         [TestMethod]
-        public void TestTypes()
+        public void Enums()
         {
-            _test.TestTypes();
+            _test.Enums();
         }
     }
 }

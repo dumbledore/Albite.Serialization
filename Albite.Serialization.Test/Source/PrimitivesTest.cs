@@ -3,9 +3,9 @@ using System;
 
 namespace Albite.Serialization.Test
 {
-    public class SerializerPrimitivesTest
+    public class PrimitivesTest
     {
-        public void TestPrimitives()
+        public void Primitives()
         {
             DateTimeOffset localTime = DateTimeOffset.Now;
 

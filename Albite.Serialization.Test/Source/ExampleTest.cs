@@ -5,7 +5,7 @@ using System.IO;
 
 namespace Albite.Serialization.Test
 {
-    public class SerializerExampleTest
+    public class ExampleTest
     {
         private enum MyEnum
         {
@@ -93,7 +93,7 @@ namespace Albite.Serialization.Test
             }
         }
 
-        public void SimpleClassExampleTest()
+        public void SimpleClassExample()
         {
             byte[] buffer;
 

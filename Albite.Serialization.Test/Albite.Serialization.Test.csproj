@@ -51,14 +51,25 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Source\EqualityVerifier.cs" />
-    <Compile Include="Source\SerializerArrayTest.cs" />
-    <Compile Include="Source\SerializerCollectionTest.cs" />
-    <Compile Include="Source\SerializerEnumTest.cs" />
-    <Compile Include="Source\SerializerExampleTest.cs" />
-    <Compile Include="Source\SerializerObjectsTest.cs" />
-    <Compile Include="Source\SerializerPrimitivesTest.cs" />
+    <Compile Include="Source\ArrayTest.cs" />
+    <Compile Include="Source\CollectionTest.cs" />
+    <Compile Include="Source\EnumTest.cs" />
+    <Compile Include="Source\ExampleTest.cs" />
+    <Compile Include="Source\Objects\AbstractClassTest.cs" />
+    <Compile Include="Source\Objects\ArrayOfInterfacesTest.cs" />
+    <Compile Include="Source\Objects\ClassWithReadOnlyWriteOnlyPropertiesTest.cs" />
+    <Compile Include="Source\Objects\ClassWithIndexerTest.cs" />
+    <Compile Include="Source\Objects\CustomAttributesTest.cs" />
+    <Compile Include="Source\Objects\CustomListTest.cs" />
+    <Compile Include="Source\Objects\GenericsTest.cs" />
+    <Compile Include="Source\Objects\NullObjectTest.cs" />
+    <Compile Include="Source\Objects\RecursiveObjectsTest.cs" />
+    <Compile Include="Source\Objects\SemiSerializedTest.cs" />
+    <Compile Include="Source\Objects\StructTest.cs" />
+    <Compile Include="Source\PrimitivesTest.cs" />
     <Compile Include="Source\Helper.cs" />
-    <Compile Include="Source\SerializerTypeTest.cs" />
+    <Compile Include="Source\TypeTest.cs" />
+    <Compile Include="Source\Objects\VariousObjectsTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

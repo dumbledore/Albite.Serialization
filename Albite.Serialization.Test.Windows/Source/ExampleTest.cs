@@ -6,7 +6,7 @@ namespace Albite.Serialization.Test.Windows
     [TestClass]
     public class SerializerExampleTest : UnitTest
     {
-        private readonly Test.SerializerExampleTest _test = new Test.SerializerExampleTest();
+        private readonly Test.ExampleTest _test = new Test.ExampleTest();
 
         [TestMethod]
         public void SimpleExample()
@@ -15,9 +15,9 @@ namespace Albite.Serialization.Test.Windows
         }
 
         [TestMethod]
-        public void SimpleClassExampleTest()
+        public void SimpleClassExample()
         {
-            _test.SimpleClassExampleTest();
+            _test.SimpleClassExample();
         }
     }
 }

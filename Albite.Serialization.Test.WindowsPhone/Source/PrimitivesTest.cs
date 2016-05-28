@@ -6,12 +6,12 @@ namespace Albite.Serialization.Test.WindowsPhone
     [TestClass]
     public class SerializerPrimitivesTest : UnitTest
     {
-        private readonly Test.SerializerPrimitivesTest _test = new Test.SerializerPrimitivesTest();
+        private readonly Test.PrimitivesTest _test = new Test.PrimitivesTest();
 
         [TestMethod]
-        public void TestPrimitives()
+        public void Primitives()
         {
-            _test.TestPrimitives();
+            _test.Primitives();
         }
     }
 }

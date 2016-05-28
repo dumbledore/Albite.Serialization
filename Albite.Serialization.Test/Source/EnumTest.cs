@@ -2,7 +2,7 @@
 
 namespace Albite.Serialization.Test
 {
-    public class SerializerEnumTest
+    public class EnumTest
     {
         private enum E
         {
@@ -20,7 +20,7 @@ namespace Albite.Serialization.Test
             Z,
         }
 
-        public void TestEnum()
+        public void Enums()
         {
             object[] values =
             {

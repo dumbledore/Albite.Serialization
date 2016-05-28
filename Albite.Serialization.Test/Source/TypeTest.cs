@@ -3,14 +3,14 @@ using System;
 
 namespace Albite.Serialization.Test
 {
-    public class SerializerTypeTest
+    public class TypeTest
     {
         private interface I { }
         private abstract class A : I { }
         private class B : I { }
         private class D : B { }
 
-        public void TestTypes()
+        public void Types()
         {
             Type[] values =
             {

@@ -2,9 +2,9 @@
 
 namespace Albite.Serialization.Test
 {
-    public class SerializerArrayTest
+    public class ArrayTest
     {
-        public void SerializeByteArray()
+        public void ByteArray()
         {
             byte[] arr1 = new byte[] { 1, 4, 10 };
 
