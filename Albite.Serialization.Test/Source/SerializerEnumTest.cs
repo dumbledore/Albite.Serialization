@@ -42,7 +42,7 @@ namespace Albite.Serialization.Test
                 (MyEnum)17,
             };
 
-            object[] valuesRead = Helper.Test(values);
+            object[] valuesRead = Helper.TestMultiple(values);
             CollectionAssert.AreEqual(values, valuesRead);
         }
     }

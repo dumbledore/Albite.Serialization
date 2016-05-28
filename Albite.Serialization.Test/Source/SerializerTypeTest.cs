@@ -30,7 +30,7 @@ namespace Albite.Serialization.Test
                 "".GetType(),
             };
 
-            object[] valuesRead = Helper.Test(values);
+            object[] valuesRead = Helper.TestMultiple(values);
             CollectionAssert.AreEqual(values, valuesRead);
         }
     }

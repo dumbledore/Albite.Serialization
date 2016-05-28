@@ -8,7 +8,7 @@ namespace Albite.Serialization.Test
         {
             byte[] arr1 = new byte[] { 1, 4, 10 };
 
-            object[] valuesRead = Helper.Test(new object[] {
+            object[] valuesRead = Helper.TestMultiple(new object[] {
                 arr1,
                 arr1,
                 (byte) 111,

@@ -74,7 +74,7 @@ namespace Albite.Serialization.Test
                 new Guid(Int32.MaxValue,Int16.MaxValue,Int16.MinValue,1,2,3,4,5,6,Byte.MinValue,Byte.MaxValue),
             };
 
-            object[] valuesRead = Helper.Test(values);
+            object[] valuesRead = Helper.TestMultiple(values);
             CollectionAssert.AreEqual(values, valuesRead);
         }
     }

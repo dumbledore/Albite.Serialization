@@ -9,10 +9,10 @@ namespace Albite.Serialization.Test
     {
         public static object Test(object value, Type attributeType = null)
         {
-            return Test(new object[] { value }, attributeType)[0];
+            return TestMultiple(new object[] { value }, attributeType)[0];
         }
 
-        public static object[] Test(object[] values, Type attributeType = null)
+        public static object[] TestMultiple(object[] values, Type attributeType = null)
         {
             if (attributeType == null)
             {
