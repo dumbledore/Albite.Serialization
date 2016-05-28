@@ -1,8 +1,11 @@
-﻿namespace Albite.Serialization.Test.Objects
+﻿using Albite.Test;
+
+namespace Albite.Serialization.Test.Objects
 {
     public class NullObjectTest
     {
         interface I { }
+
         class C : I { }
 
         public void Test()
@@ -11,9 +14,12 @@
             I i = null;
             C c = null;
 
-            Helper.Test(o);
-            Helper.Test(i);
-            Helper.Test(c);
+            object[] values = { o, i, c, };
+            foreach (var value in values)
+            {
+                object valueRead = Helper.Test(value);
+                Assert.IsNull(valueRead);
+            }
         }
     }
 }

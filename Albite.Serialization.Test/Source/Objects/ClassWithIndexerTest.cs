@@ -1,4 +1,8 @@
-﻿namespace Albite.Serialization.Test.Objects
+﻿using Albite.Test;
+using System;
+using System.Linq;
+
+namespace Albite.Serialization.Test.Objects
 {
     public class ClassWithIndexerTest
     {
@@ -17,15 +21,27 @@
             [Serialized]
             public string this[int index]
             {
-                get
-                {
-                    return _arr[index];
-                }
+                get { return _arr[index]; }
+                set { _arr[index] = value; }
+            }
 
-                set
+            public override bool Equals(object obj)
+            {
+                ClassWithIndexer other = obj as ClassWithIndexer;
+
+                if (other == null || (_arr.Length != other._arr.Length))
                 {
-                    _arr[index] = value;
+                    return false;
                 }
+                else
+                {
+                    return _arr.SequenceEqual(other._arr);
+                }
+            }
+
+            public override int GetHashCode()
+            {
+                return _arr.Length;
             }
         }
 
@@ -35,9 +51,11 @@
             c[0] = "Hello";
             c[1] = "there!";
 
-            // this should pass as the indexer would not have been serialized
+            // This should not thorw as the indexer would not have been
             // even though the serialized attribute was mistakenly put
-            Helper.Test(c);
+            // because indexers are not supported for IMemberValue.
+            ClassWithIndexer cRead = (ClassWithIndexer)Helper.Test(c);
+            Assert.AreEqual(c, cRead);
         }
     }
 }

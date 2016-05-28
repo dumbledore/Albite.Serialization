@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Albite.Test;
+using System;
 
 namespace Albite.Serialization.Test.Objects
 {
@@ -11,23 +8,35 @@ namespace Albite.Serialization.Test.Objects
         [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
         private class CustomSerializedAttribute : Attribute { }
 
-        private class CA
+        private class MyClass
         {
-            private CA() { }
+            private MyClass() { }
 
-            public CA(int data)
+            public MyClass(int data)
             {
-                this.data = data;
+                _data = data;
             }
 
             [CustomSerialized]
-            private readonly int data;
+            private readonly int _data;
+
+            public override bool Equals(object obj)
+            {
+                MyClass other = obj as MyClass;
+                return (other == null) ? false : (_data == other._data);
+            }
+
+            public override int GetHashCode()
+            {
+                return _data;
+            }
         }
 
         public void Test()
         {
-            CA s = new CA(13);
-            Helper.Test(s, typeof(CustomSerializedAttribute));
+            MyClass s = new MyClass(13);
+            MyClass sRead = (MyClass)Helper.Test(s, typeof(CustomSerializedAttribute));
+            Assert.AreEqual(s, sRead);
         }
     }
 }

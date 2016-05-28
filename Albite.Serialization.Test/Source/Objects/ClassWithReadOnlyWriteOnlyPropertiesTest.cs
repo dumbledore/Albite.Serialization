@@ -1,4 +1,6 @@
-﻿namespace Albite.Serialization.Test.Objects
+﻿using Albite.Test;
+
+namespace Albite.Serialization.Test.Objects
 {
     public class ClassWithReadOnlyWriteOnlyPropertiesTest
     {
@@ -19,6 +21,17 @@
             {
                 NormalProperty = x;
             }
+
+            public override bool Equals(object obj)
+            {
+                MyClass other = obj as MyClass;
+                return (other == null) ? false : (NormalProperty == other.NormalProperty);
+            }
+
+            public override int GetHashCode()
+            {
+                return NormalProperty;
+            }
         }
 
         public void Test()
@@ -27,7 +40,8 @@
 
             // This should pass as only the normal property
             // should have been serialized.
-            Helper.Test(c);
+            MyClass cRead = (MyClass)Helper.Test(c);
+            Assert.AreEqual(c, cRead);
         }
     }
 }

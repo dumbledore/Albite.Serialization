@@ -1,4 +1,7 @@
-﻿namespace Albite.Serialization.Test.Objects
+﻿using Albite.Test;
+using System.Linq;
+
+namespace Albite.Serialization.Test.Objects
 {
     public class AbstractClassTest
     {
@@ -6,27 +9,32 @@
 
         private abstract class AbstractClass : I
         {
-            // not serialized
-            private int _privData;
-
-            // In order to serialize this, we need
-            // to have a setter!
+            // In order to serialize this (even though it is abstract),
+            // we need to have a setter.
             [Serialized]
-            public abstract int AbstractData { get; protected set; }
+            public abstract int Data { get; protected set; }
 
             protected AbstractClass() { }
 
             protected AbstractClass(int data)
             {
-                _privData = data;
+                this.Data = data;
+            }
+
+            public override bool Equals(object obj)
+            {
+                AbstractClass other = obj as AbstractClass;
+                return (other == null) ? false : (Data == other.Data);
+            }
+
+            public override int GetHashCode()
+            {
+                return Data;
             }
         }
 
         private class ConcreteClass : AbstractClass
         {
-            [Serialized]
-            private int _privData;
-
             private ConcreteClass() { }
 
             // This one will not have the serialized attribute
@@ -34,22 +42,23 @@
             // This is expected as it will be serialized as part
             // of AbstractClass. Otherwise it would have been
             // serialzed twice (not good at all!).
-            public override int AbstractData { get; protected set; }
+            public override int Data { get; protected set; }
 
-            public ConcreteClass(int data, int data2, int data3)
-                : base(data)
-            {
-                AbstractData = data2;
-                _privData = data3;
-            }
+            public ConcreteClass(int data) : base(data) { }
         }
 
         public void Test()
         {
-            AbstractClass a = new ConcreteClass(10, 20, 30);
-            AbstractClass[] arr = new AbstractClass[] { a, a, new ConcreteClass(100, 200, 300), null };
-            Helper.Test(a);
-            Helper.Test((object)arr);
+            AbstractClass a = new ConcreteClass(10);
+            AbstractClass aRead = (AbstractClass)Helper.Test(a);
+            Assert.AreEqual(a, aRead);
+
+            AbstractClass[] arr = new AbstractClass[] { a, a, new ConcreteClass(100), null };
+            AbstractClass[] arrRead = (AbstractClass[])Helper.Test(arr);
+            Assert.IsTrue(arr.SequenceEqual(arrRead));
+            Assert.AreSame(arrRead[0], arrRead[1]);
+            Assert.AreEqual(100, arrRead[2].Data);
+            Assert.IsNull(arrRead[3]);
         }
     }
 }
