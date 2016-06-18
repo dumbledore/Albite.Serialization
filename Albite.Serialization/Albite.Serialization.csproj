@@ -81,7 +81,6 @@
     <Compile Include="Source\Internal\Readers\Context.cs" />
     <Compile Include="Source\Internal\Writers\ISerializer.cs" />
     <Compile Include="Source\Internal\Writers\Context.cs" />
-    <Compile Include="Source\SerializedAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Source\Internal\Readers\IContext.cs" />
