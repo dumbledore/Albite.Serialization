@@ -1,3 +1,6 @@
 # Build output
 Bin/
 obj/
+
+# NuGet
+project.lock.json
