@@ -3,6 +3,11 @@ This is a simple serialization library written entirely in C#. There are no nati
 
 The main reason for existence is the inconsistent APIs on Windows Phone.
 
+# Building
+This repository does **NOT** contain the solution, only the projects.The solution is available at [Albite.Serialization.Solution](https://github.com/dumbledore/Albite.Serialization.Solution).
+
+In order to build it, clone the solution repo. It would fetch _this_ project as a _Git module_.
+
 ### What can it serialiaze?
 * Primitives
 * Arrays
