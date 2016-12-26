@@ -49,5 +49,11 @@ namespace Albite.Serialization.Test.Windows
         {
             _test.CircularBufferTest();
         }
+
+        [TestMethod]
+        public void TreeTest()
+        {
+            _test.TreeTest();
+        }
     }
 }

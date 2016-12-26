@@ -64,6 +64,26 @@ namespace Albite.Serialization.Test
             CollectionAssert.AreEqual(values, valuesRead);
         }
 
+        public void TreeTest()
+        {
+            // This one is used so we can add the children to it
+            Node<string> dummy = new Node<string>();
+
+            dummy.AppendChild(new Node<string>("1"));
+            dummy.LastChild.AppendChild(new Node<string>("1.1"));
+            dummy.LastChild.AppendChild(new Node<string>("1.2"));
+
+            dummy.AppendChild(new Node<string>("2"));
+            dummy.LastChild.AppendChild(new Node<string>("2.1"));
+            dummy.LastChild.LastChild.AppendChild(new Node<string>("2.1.1"));
+            dummy.LastChild.LastChild.AppendChild(new Node<string>("2.1.2"));
+
+            dummy.AppendChild(new Node<string>("3"));
+            dummy.LastChild.AppendChild(new Node<string>("3.1"));
+
+            testCollection(new Tree<string>(dummy.FirstChild));
+        }
+
         public void CircularBufferTest()
         {
             CircularBufferQueue<string> q = new CircularBufferQueue<string>(4);
