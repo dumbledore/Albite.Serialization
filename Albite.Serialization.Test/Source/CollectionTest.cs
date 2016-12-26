@@ -5,61 +5,61 @@ namespace Albite.Serialization.Test
 {
     public class CollectionTest
     {
-        private enum E
+        private enum MyEnum
         {
             Zero,
             One,
             Ten = 10,
         }
 
-        private static readonly E[] Sample = { E.Zero, E.Zero, E.Ten, E.One, };
+        private static readonly MyEnum[] Sample = { MyEnum.Zero, MyEnum.Zero, MyEnum.Ten, MyEnum.One, };
 
         public void Lists()
         {
-            List<E> list = new List<E>();
+            List<MyEnum> list = new List<MyEnum>();
             foreach (var e in Sample) list.Add(e);
             testCollection(list);
         }
 
         public void LinkedLists()
         {
-            LinkedList<E> list = new LinkedList<E>();
+            LinkedList<MyEnum> list = new LinkedList<MyEnum>();
             foreach (var e in Sample) list.AddLast(e);
             testCollection(list);
         }
 
         public void Stacks()
         {
-            Stack<E> stack = new Stack<E>();
+            Stack<MyEnum> stack = new Stack<MyEnum>();
             foreach (var e in Sample) stack.Push(e);
             testCollection(stack);
         }
 
         public void Queues()
         {
-            List<E> queue = new List<E>();
+            List<MyEnum> queue = new List<MyEnum>();
             foreach (var e in Sample) queue.Add(e);
             testCollection(queue);
         }
 
         public void HashSets()
         {
-            HashSet<E> set = new HashSet<E>();
+            HashSet<MyEnum> set = new HashSet<MyEnum>();
             foreach (var e in Sample) set.Add(e);
             testCollection(set);
         }
 
         public void SortedSets()
         {
-            SortedSet<E> set = new SortedSet<E>();
+            SortedSet<MyEnum> set = new SortedSet<MyEnum>();
             foreach (var e in Sample) set.Add(e);
             testCollection(set);
         }
 
-        private void testCollection(IEnumerable<E> collection)
+        private void testCollection(IEnumerable<MyEnum> collection)
         {
-            List<E> values = new List<E>(collection);
-            List<E> valuesRead = new List<E>((IEnumerable<E>)Helper.Test(collection));
+            List<MyEnum> values = new List<MyEnum>(collection);
+            List<MyEnum> valuesRead = new List<MyEnum>((IEnumerable<MyEnum>)Helper.Test(collection));
             CollectionAssert.AreEqual(values, valuesRead);
         }
     }
