@@ -56,10 +56,10 @@ namespace Albite.Serialization.Test
             testCollection(set);
         }
 
-        private void testCollection(IEnumerable<MyEnum> collection)
+        private void testCollection<E>(IEnumerable<E> collection)
         {
-            List<MyEnum> values = new List<MyEnum>(collection);
-            List<MyEnum> valuesRead = new List<MyEnum>((IEnumerable<MyEnum>)Helper.Test(collection));
+            List<E> values = new List<E>(collection);
+            List<E> valuesRead = new List<E>((IEnumerable<E>)Helper.Test(collection));
             CollectionAssert.AreEqual(values, valuesRead);
         }
     }
