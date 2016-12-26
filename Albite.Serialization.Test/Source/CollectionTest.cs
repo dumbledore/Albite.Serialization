@@ -1,4 +1,5 @@
-﻿using Albite.Test;
+﻿using Albite.Collections;
+using Albite.Test;
 using System.Collections.Generic;
 
 namespace Albite.Serialization.Test
@@ -61,6 +62,22 @@ namespace Albite.Serialization.Test
             List<E> values = new List<E>(collection);
             List<E> valuesRead = new List<E>((IEnumerable<E>)Helper.Test(collection));
             CollectionAssert.AreEqual(values, valuesRead);
+        }
+
+        public void CircularBufferTest()
+        {
+            CircularBufferQueue<string> q = new CircularBufferQueue<string>(4);
+            q.Enqueue("a");
+            q.Enqueue("b");
+            q.Enqueue("c");
+            q.Enqueue("d");
+            q.Enqueue("e");
+            testCollection(q);
+
+            CircularBufferStack<int> s = new CircularBufferStack<int>(10);
+            s.Push(1);
+            s.Push(2);
+            testCollection(s);
         }
     }
 }

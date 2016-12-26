@@ -43,5 +43,11 @@ namespace Albite.Serialization.Test.WindowsPhone
         {
             _test.SortedSets();
         }
+
+        [TestMethod]
+        public void CircularBufferTest()
+        {
+            _test.CircularBufferTest();
+        }
     }
 }
