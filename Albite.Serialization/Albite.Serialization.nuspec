@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Albite.Serialization</id>
+    <version>1.5.1.0</version>
+    <title>Albite.Serialization</title>
+    <authors>Svetlin Ankov</authors>
+    <owners>dumbledore</owners>
+    <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://github.com/dumbledore/Albite.Serialization</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+      A simple serialization library written entirely in C#.
+      There are no native dependencies, so that it can run on any architecture.
+    </description>
+    <releaseNotes>Initial drop.</releaseNotes>
+    <copyright>Copyright © Svetlin Ankov 2016</copyright>
+    <tags>c# .net albite serialization serializer marshall marshalling flatten</tags>
+
+    <!-- A list of this packages dependencies-->
+    <dependencies>
+      <group targetFramework=".NETStandard1.1">
+        <dependency id="Microsoft.NETCore.Portable.Compatibility" version="1.0.1" exclude="Build,Analyzers" />
+        <dependency id="NETStandard.Library" version="1.6.0" exclude="Build,Analyzers" />
+        <dependency id="Albite.Core" version="1.6.1" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+
+  <files>
+    <!-- Main library files -->
+    <file src="bin\Release\Albite.Serialization.dll" target="lib\netstandard1.1" />
+    <file src="bin\Release\Albite.Serialization.xml" target="lib\netstandard1.1" />
+
+    <!-- A readme will be displayed when the package is installed -->
+    <file src="README.txt" />
+  </files>
+</package>
